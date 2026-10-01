@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+*.tsbuildinfo
+asset-contact-sheet.jpg
+.playwright-cli/
+output/

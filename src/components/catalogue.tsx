@@ -1,18 +1,14 @@
 "use client";
 import { useState } from "react";
-import {
-  products,
-  fragrances,
-  type Product,
-  type Fragrance,
-  oilFragrances,
-} from "@/lib/data";
+import { products, fragrances, oilFragrances } from "@/lib/data";
 import { ProductCard, FragranceCard } from "./ui";
 const productFilters = [
   { key: "all", label: "All Products" },
   { key: "compact", label: "Compact Diffusers" },
   { key: "wall", label: "Wall Mounted" },
   { key: "tower", label: "Tower / Floor Standing" },
+  { key: "hvac", label: "HVAC Scenting" },
+  { key: "dispenser", label: "Automatic Dispensers" },
   { key: "oil", label: "Fragrance Oils" },
 ];
 export function ProductCatalogue({
@@ -28,8 +24,9 @@ export function ProductCatalogue({
   );
   return (
     <>
+      <h2 className="sr-only">Diffuser and fragrance collection</h2>
       {!fixed && (
-        <div className="filter-bar" aria-label="Filter products">
+        <div className="filter-bar" role="group" aria-label="Filter products">
           {productFilters.map((f) => (
             <button
               key={f.key}
@@ -45,23 +42,17 @@ export function ProductCatalogue({
       <div className="catalogue-status" aria-live="polite">
         {filter === "oil"
           ? `${oilFragrances.length} fragrance oils`
-          : `${list.length} diffusers`}
+          : `${list.length} ${list.length === 1 ? "product" : "products"}`}
         <span>Find your perfect fit.</span>
       </div>
       {filter === "oil" ? (
-        <>
-          <p className="packaging-note">
-            Representative Aroma airs range packaging. Ask us about available
-            bottle sizes.
-          </p>
-          <div className="oil-grid">
-            {oilFragrances.map((f) => (
-              <FragranceCard key={f.slug} fragrance={f} oil />
-            ))}
-          </div>
-        </>
+        <div className="oil-grid">
+          {oilFragrances.map((f) => (
+            <FragranceCard key={f.slug} fragrance={f} enquire />
+          ))}
+        </div>
       ) : (
-        <div className="product-grid">
+        <div className="product-grid" key={filter}>
           {list.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}
@@ -78,7 +69,8 @@ export function FragranceCatalogue() {
   );
   return (
     <>
-      <div className="filter-bar" aria-label="Filter fragrances">
+      <h2 className="sr-only">Browse our fragrances</h2>
+      <div className="filter-bar" role="group" aria-label="Filter fragrances">
         {filters.map((f) => (
           <button
             key={f}
@@ -93,12 +85,9 @@ export function FragranceCatalogue() {
       <div className="catalogue-status" aria-live="polite">
         {list.length} fragrances<span>Find a scent that feels like you.</span>
       </div>
-      <div className="fragrance-catalogue-grid">
+      <div className="oil-grid" key={filter}>
         {list.map((f) => (
-          <div key={f.slug}>
-            <FragranceCard fragrance={f} />
-            <p className="fragrance-description">{f.description}</p>
-          </div>
+          <FragranceCard key={f.slug} fragrance={f} enquire={f.collection === "oil"} />
         ))}
       </div>
     </>

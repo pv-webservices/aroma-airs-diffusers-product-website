@@ -5,127 +5,90 @@ import {
   Breadcrumb,
   Eyebrow,
   ContactButtons,
-  Photo,
   CTA,
   SectionHeading,
   FragranceCard,
   ProductCard,
+  DetailLink,
+  isStudioImage,
 } from "@/components/ui";
+import ProductGallery from "@/components/product-gallery";
+
 export function generateStaticParams() {
   return fragrances.map((f) => ({ slug: f.slug }));
 }
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const f = fragrances.find((f) => f.slug === slug);
-  return f
-    ? pageMeta(
-        f.name,
-        f.description,
-        `/fragrances/${slug}`,
-        `/images/${f.image}.webp`,
-      )
-    : {};
+  const f = fragrances.find((item) => item.slug === slug);
+  return f ? pageMeta(f.name, f.description, `/fragrances/${slug}`, `/images/${f.image}.webp`) : {};
 }
-export default async function FragrancePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+
+const diffuserPairings = ["cloudy", "square-tower", "compact"];
+
+export default async function FragrancePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const f = fragrances.find((f) => f.slug === slug);
+  const f = fragrances.find((item) => item.slug === slug);
   if (!f) notFound();
+  const isOil = f.collection === "oil";
+  // Only labelled bottles get the collection shots; scent photos stand alone.
+  const gallery = isStudioImage(f.image) ? [f.image, "latest-oils", "essential-oils"] : [f.image];
+  const sameFamily = fragrances.filter((o) => o.slug !== f.slug && o.family === f.family);
+  const more = [...sameFamily, ...fragrances.filter((o) => o.slug !== f.slug && o.family !== f.family)].slice(0, 5);
+
   return (
     <>
-      <section className="product-detail-section">
+      <section className="pd">
+        <div className="pd-glow" aria-hidden="true" />
         <div className="container">
-          <Breadcrumb
-            items={[
-              { label: "Fragrances", href: "/fragrances" },
-              { label: f.name },
-            ]}
-          />
-          <div className="fragrance-detail-layout">
-            <Photo
-              name={f.image}
-              alt={`${f.name} fragrance inspiration`}
-              priority
-              className="fragrance-detail-photo"
-            />
-            <div className="product-detail-info">
+          <Breadcrumb items={[{ label: "Fragrances", href: "/fragrances" }, { label: f.name }]} />
+          <div className="pd-layout">
+            <ProductGallery images={gallery} name={f.name} />
+            <div className="pd-info">
               <Eyebrow>
-                {f.family.toUpperCase()} ·{" "}
-                {f.collection === "oil" ? "FRAGRANCE OIL" : "SIGNATURE SCENT"}
+                {f.family} · {isOil ? "Fragrance oil" : "Signature scent"}
               </Eyebrow>
               <h1>{f.name}</h1>
-              <p className="product-positioning">{f.mood}.</p>
-              <p className="body-copy">{f.description}</p>
-              <p className="body-copy">
-                Discover this fragrance with the Aroma airs team. We’ll help you
-                choose a diffuser and intensity to suit your space.
+              <p className="pd-tagline">{f.mood}.</p>
+              <p className="lede">{f.description}</p>
+              <p className="lede">
+                Discover this fragrance with the Aroma Airs team. We&rsquo;ll help you choose a diffuser and intensity
+                to suit your space.
               </p>
-              <ContactButtons
-                subject={`${f.name} fragrance ${f.collection === "oil" ? "oil" : ""}`}
-                large
-              />
-              <p className="enquiry-caption">
-                Ask us about availability, bottle sizes and model compatibility.
-              </p>
+              <ContactButtons subject={`${f.name} fragrance${isOil ? " oil" : ""}`} large />
+              <p className="pd-caption">Ask us about availability, bottle sizes and model compatibility.</p>
             </div>
           </div>
         </div>
       </section>
-      {f.collection === "oil" && (
-        <section className="section oil-detail-band">
-          <div className="container oil-detail-layout">
-            <Photo
-              name="oil-bottle"
-              alt="Representative Aroma airs fragrance oil range packaging"
-              className="oil-detail-bottle"
-            />
-            <div>
-              <SectionHeading
-                label="THE FRAGRANCE OIL COLLECTION"
-                title="The finishing touch to your space."
-                description="Pair a considered fragrance with a diffuser that suits your interior. Contact us for usage guidance and a compatible oil for your model."
-              />
-              <p className="spec-note">
-                Representative range packaging shown. Bottle size and labelling
-                may vary by fragrance.
-              </p>
-            </div>
+
+      <section className="section soft-section">
+        <div className="container">
+          <div className="section-top">
+            <SectionHeading label="COMPLETE THE EXPERIENCE" title="Find a diffuser to match." />
+            <DetailLink href="/products">All diffusers</DetailLink>
           </div>
-        </section>
-      )}
+          <div className="product-grid">
+            {diffuserPairings
+              .map((s) => products.find((p) => p.slug === s))
+              .filter((p): p is (typeof products)[number] => Boolean(p))
+              .map((p) => (
+                <ProductCard key={p.slug} product={p} />
+              ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container">
-          <SectionHeading
-            label="COMPLETE THE EXPERIENCE"
-            title="Find a diffuser to match."
-          />
-          <div className="related-grid">
-            {products.slice(0, 3).map((p) => (
-              <ProductCard key={p.slug} product={p} />
-            ))}
+          <div className="section-top">
+            <SectionHeading label="MORE TO DISCOVER" title="A different mood. A new favourite." />
+            <DetailLink href="/fragrances">All fragrances</DetailLink>
           </div>
-        </div>
-      </section>
-      <section className="section fragrance-home">
-        <div className="container">
-          <SectionHeading
-            label="MORE TO DISCOVER"
-            title="A different mood. A new favourite."
-          />
-          <div className="signature-grid">
-            {fragrances
-              .filter((other) => other.slug !== f.slug)
-              .slice(0, 5)
-              .map((other) => (
-                <FragranceCard key={other.slug} fragrance={other} />
-              ))}
+          <div className="oil-grid">
+            {more.map((other) => (
+              <FragranceCard key={other.slug} fragrance={other} />
+            ))}
           </div>
         </div>
       </section>

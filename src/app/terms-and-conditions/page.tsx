@@ -3,7 +3,7 @@ import { business } from "@/lib/data";
 import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta(
   "Terms & Conditions",
-  "Terms for browsing the Aroma airs product catalogue and making product enquiries.",
+  "Terms for browsing the Aroma Airs product catalogue and making product enquiries.",
   "/terms-and-conditions",
 );
 export default function TermsPage() {
@@ -18,7 +18,7 @@ export default function TermsPage() {
       <article className="container legal-content">
         <h2>Using this website</h2>
         <p>
-          This website presents the Aroma airs fragrance diffuser and oil
+          This website presents the Aroma Airs fragrance diffuser and oil
           collection from {business.legalName}. It is a product showcase and
           enquiry website. Products cannot be purchased through this website.
         </p>

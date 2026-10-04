@@ -3,7 +3,7 @@ import { FragranceCatalogue } from "@/components/catalogue";
 import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta(
   "Our Fragrances",
-  "Find your signature scent. Explore Aroma airs floral, fresh, woody and citrus fragrances for residential and commercial spaces.",
+  "Find your signature scent. Explore Aroma Airs floral, fresh, woody and citrus fragrances for residential and commercial spaces.",
   "/fragrances",
 );
 export default function FragrancesPage() {

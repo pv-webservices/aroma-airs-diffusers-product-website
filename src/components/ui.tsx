@@ -4,7 +4,6 @@ import {
   ArrowRight,
   Phone,
   Waves,
-  Clock3,
   VolumeX,
   Leaf,
   Gem,
@@ -45,12 +44,16 @@ export function WhatsAppIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-type ButtonVariant = "pink" | "outline" | "green" | "light" | "dark" | "ghost";
+export type ButtonVariant = "primary" | "outline" | "whatsapp" | "light" | "dark";
 
+/**
+ * Link styled as a button. Colour-flow animation lives in CSS (.btn-*):
+ * the gradient drifts slowly at rest and shifts hue on hover/tap.
+ */
 export function Button({
   href,
   children,
-  variant = "pink",
+  variant = "primary",
   arrow = true,
   className = "",
   small = false,
@@ -66,11 +69,15 @@ export function Button({
   return (
     <a
       href={href}
-      className={`button button-${variant} ${small ? "button-small" : ""} ${className}`}
+      className={`btn btn-${variant} ${small ? "btn-small" : ""} ${className}`}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
-      <span className="button-label">{children}</span>
-      {arrow && <ArrowRight className="button-arrow" size={17} aria-hidden="true" />}
+      <span className="btn-label">{children}</span>
+      {arrow && (
+        <span className="btn-arrow" aria-hidden="true">
+          <ArrowRight size={16} />
+        </span>
+      )}
     </a>
   );
 }
@@ -88,7 +95,12 @@ export function ContactButtons({
         <Phone size={large ? 17 : 14} aria-hidden="true" />
         {large ? "Call for Details" : "Call"}
       </Button>
-      <Button href={whatsapp(subject)} variant="green" arrow={false} small={!large}>
+      <Button
+        href={whatsapp(subject)}
+        variant="whatsapp"
+        arrow={false}
+        small={!large}
+      >
         <WhatsAppIcon size={large ? 18 : 15} />
         {large ? "Enquire on WhatsApp" : "WhatsApp"}
       </Button>
@@ -96,8 +108,13 @@ export function ContactButtons({
   );
 }
 
-export function Eyebrow({ children, light = false }: Children & { light?: boolean }) {
-  return <p className={`eyebrow ${light ? "eyebrow-light" : ""}`}>{children}</p>;
+export function Eyebrow({
+  children,
+  light = false,
+}: Children & { light?: boolean }) {
+  return (
+    <p className={`eyebrow ${light ? "eyebrow-light" : ""}`}>{children}</p>
+  );
 }
 
 export function SectionHeading({
@@ -114,10 +131,12 @@ export function SectionHeading({
   light?: boolean;
 }) {
   return (
-    <div className={`section-heading ${centered ? "centered" : ""} ${light ? "light" : ""}`}>
+    <div
+      className={`section-heading reveal ${centered ? "centered" : ""} ${light ? "light" : ""}`}
+    >
       <Eyebrow light={light}>{label}</Eyebrow>
       <h2>{title}</h2>
-      {description && <p className="body-copy">{description}</p>}
+      {description && <p className="lede">{description}</p>}
     </div>
   );
 }
@@ -137,85 +156,124 @@ export function Photo({
 }) {
   return (
     <div className={`photo ${className}`}>
-      <Image src={`/images/${name}.webp`} alt={alt} fill sizes={sizes} priority={priority} />
+      <Image
+        src={`/images/${name}.webp`}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+      />
     </div>
   );
+}
+
+/** Studio product shots are on white and blend into the warm card stage. */
+export function isStudioImage(name: string): boolean {
+  return /^(p-|s-)/.test(name);
 }
 
 export function categoryLabel(category: Product["category"]): string {
   if (category === "wall") return "Wall Mounted";
   if (category === "tower") return "Floor Standing";
+  if (category === "hvac") return "HVAC Scenting";
+  if (category === "dispenser") return "Automatic Spray";
   return "Compact";
 }
 
 const lightFinish = (color: string) => /white|silver/i.test(color);
 
-export function ProductCard({ product }: { product: Product }) {
+export function Swatches({ colors }: { colors: string[] }) {
   return (
-    <article className="product-card">
-      <a href={`/products/${product.slug}`} className="product-card-main">
-        <div className="product-card-image">
-          <span className="card-category">{categoryLabel(product.category)}</span>
+    <p className="swatches">
+      {colors.map((c) => (
+        <span
+          key={c}
+          className={`swatch ${lightFinish(c) ? "is-light" : ""}`}
+          title={c}
+        />
+      ))}
+      <span className="swatch-label">{colors.join(" / ")}</span>
+    </p>
+  );
+}
+
+export function ProductCard({
+  product,
+  priority = false,
+}: {
+  product: Product;
+  priority?: boolean;
+}) {
+  return (
+    <article className="p-card" data-tilt>
+      <a href={`/products/${product.slug}`} className="p-card-link">
+        <div className="p-card-stage">
+          <span className="chip">{categoryLabel(product.category)}</span>
           <Image
             src={`/images/${product.image}.webp`}
-            alt={`${product.name} fragrance diffuser`}
+            alt={`${product.name} ${product.category === "dispenser" ? "fragrance dispenser" : "fragrance diffuser"}`}
             fill
-            sizes="(max-width: 600px) 70vw, (max-width: 1100px) 33vw, 18vw"
+            priority={priority}
+            className="p-card-img"
+            sizes="(max-width: 600px) 80vw, (max-width: 1100px) 40vw, 22vw"
           />
-          <span className="card-view" aria-hidden="true">
+          <span className="p-card-go" aria-hidden="true">
             <ArrowUpRight size={18} />
           </span>
         </div>
-        <div className="product-card-text">
+        <div className="p-card-body">
           <h3>{product.name}</h3>
-          <ul>
-            {product.features.map((f) => (
+          <p className="p-card-label">{product.label}</p>
+          <ul className="p-card-feats">
+            {product.features.slice(0, 3).map((f) => (
               <li key={f}>{f}</li>
             ))}
           </ul>
-          <p className="color-line">
-            {product.colors.map((c) => (
-              <span key={c} className={`color-dot ${lightFinish(c) ? "white" : ""}`} title={c} />
-            ))}
-            Colour: {product.colors.join(" / ")}
-          </p>
+          <Swatches colors={product.colors} />
         </div>
       </a>
-      <ContactButtons subject={`the ${product.name} fragrance diffuser`} />
+      <ContactButtons
+        subject={`the ${product.name} ${product.category === "dispenser" ? "fragrance dispenser" : "fragrance diffuser"}`}
+      />
     </article>
   );
 }
 
 export function FragranceCard({
   fragrance,
-  oil = false,
+  enquire = false,
 }: {
   fragrance: Fragrance;
-  oil?: boolean;
+  enquire?: boolean;
 }) {
+  const bottle = isStudioImage(fragrance.image);
   return (
-    <article className={`fragrance-card ${oil ? "oil-card" : ""}`}>
-      <a href={`/fragrances/${fragrance.slug}`}>
-        <div className="fragrance-card-photo">
+    <article className={`f-card ${bottle ? "is-bottle" : ""}`} data-tilt>
+      <a href={`/fragrances/${fragrance.slug}`} className="f-card-link">
+        <div className="f-card-media">
           <Image
             src={`/images/${fragrance.image}.webp`}
-            alt={`${fragrance.name} scent inspiration`}
+            alt={
+              bottle
+                ? `${fragrance.name} fragrance oil bottle`
+                : `${fragrance.name} scent inspiration`
+            }
             fill
             sizes="(max-width: 600px) 60vw, (max-width: 1100px) 30vw, 18vw"
           />
-          <span className="fragrance-family">{fragrance.family}</span>
-          <span className="photo-arrow" aria-hidden="true">
+          <span className="chip">{fragrance.family}</span>
+          <span className="p-card-go" aria-hidden="true">
             <ArrowUpRight size={18} />
           </span>
-          <div className="fragrance-card-text">
-            <h3>{fragrance.name}</h3>
-            <p>{fragrance.mood}</p>
-          </div>
+        </div>
+        <div className="f-card-body">
+          <h3>{fragrance.name}</h3>
+          <p>{fragrance.mood}</p>
         </div>
       </a>
-      {oil && (
+      {enquire && (
         <a
-          className="oil-enquire"
+          className="f-card-enquire"
           href={whatsapp(`${fragrance.name} fragrance oil`)}
           target="_blank"
           rel="noopener noreferrer"
@@ -237,26 +295,34 @@ const appIcons = {
   leaf: Leaf,
 };
 
+export function AppIcon({ name, size = 22 }: { name: string; size?: number }) {
+  const Icon = appIcons[name as keyof typeof appIcons] ?? Leaf;
+  return <Icon size={size} strokeWidth={1.5} aria-hidden="true" />;
+}
+
 export function ApplicationCard({
   application,
 }: {
   application: (typeof applications)[number];
 }) {
-  const Icon = appIcons[application.icon as keyof typeof appIcons];
   return (
-    <a href={`/applications#${application.slug}`} className="application-card">
+    <a
+      href={`/applications#${application.slug}`}
+      className="a-card"
+      data-tilt
+    >
       <Image
         src={`/images/${application.image}.webp`}
         alt={`${application.name} interior inspiration`}
         fill
-        sizes="(max-width: 600px) 50vw, (max-width: 1100px) 33vw, 17vw"
+        sizes="(max-width: 600px) 80vw, (max-width: 1100px) 33vw, 20vw"
       />
-      <div className="application-card-text">
-        <span className="application-icon">
-          <Icon size={22} strokeWidth={1.6} aria-hidden="true" />
+      <div className="a-card-body">
+        <span className="a-card-icon">
+          <AppIcon name={application.icon} />
         </span>
         <h3>{application.name}</h3>
-        <span className="application-more">
+        <span className="a-card-more">
           Explore <ArrowUpRight size={14} aria-hidden="true" />
         </span>
       </div>
@@ -265,20 +331,80 @@ export function ApplicationCard({
 }
 
 export const benefits = [
-  { icon: Waves, title: "Consistent Fragrance", text: "Advanced diffusion for uniform fragrance" },
-  { icon: Clock3, title: "Long-lasting Performance", text: "Continuous & reliable scent experience" },
-  { icon: VolumeX, title: "Quiet Operation", text: "Low noise, peaceful ambience" },
-  { icon: Leaf, title: "Energy Efficient", text: "Designed for everyday use" },
-  { icon: Gem, title: "Premium Design", text: "Sleek, modern look for any space" },
+  {
+    icon: Wind,
+    title: "Cold-Air Diffusion",
+    text: "Fine, dry mist on nebulizing models",
+  },
+  {
+    icon: Waves,
+    title: "Consistent Fragrance",
+    text: "An even scent from entrance to lounge",
+  },
+  {
+    icon: VolumeX,
+    title: "Quiet Operation",
+    text: "Low noise for calm interiors",
+  },
+  {
+    icon: SlidersHorizontal,
+    title: "Considered Controls",
+    text: "Timers and intensity by model",
+  },
+  {
+    icon: Gem,
+    title: "Premium Design",
+    text: "Finishes that suit your interior",
+  },
 ];
 
-export function Benefits({ compact = false }: { compact?: boolean }) {
+export function Benefits() {
   return (
-    <div className={`benefits ${compact ? "benefits-compact" : ""}`}>
+    <div className="benefits">
       {benefits.map(({ icon: Icon, title, text }, i) => (
-        <div className="benefit reveal" style={{ "--delay": `${i * 80}ms` } as React.CSSProperties} key={title}>
-          <span className="benefit-icon">
-            <Icon size={26} strokeWidth={1.5} aria-hidden="true" />
+        <div
+          className="benefit reveal"
+          style={{ "--delay": `${i * 80}ms` } as React.CSSProperties}
+          key={title}
+        >
+          <span className="icon-ring">
+            <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
+          </span>
+          <div>
+            <p className="benefit-title">{title}</p>
+            <p>{text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export const technologyFeatures = [
+  { icon: Wind, title: "Cold-air diffusion", text: "On supported nebulizing models" },
+  {
+    icon: SlidersHorizontal,
+    title: "Adjustable settings",
+    text: "Timers and intensity by model",
+  },
+  { icon: Droplets, title: "Long-lasting", text: "Premium fragrance oils" },
+  { icon: VolumeX, title: "Low noise", text: "Calm, discreet operation" },
+  { icon: Wrench, title: "Easy setup", text: "Wall, tabletop or floor" },
+  { icon: Sparkles, title: "Signature scent", text: "Matched to your space" },
+];
+
+export function TechnologyGrid() {
+  return (
+    <div className="tech-grid">
+      {technologyFeatures.map(({ icon: Icon, title, text }, i) => (
+        <div
+          className="tech-item reveal"
+          data-tilt
+          style={{ "--delay": `${i * 70}ms` } as React.CSSProperties}
+          key={title}
+        >
+          <span className="icon-ring">
+            <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
           </span>
           <h3>{title}</h3>
           <p>{text}</p>
@@ -288,44 +414,19 @@ export function Benefits({ compact = false }: { compact?: boolean }) {
   );
 }
 
-export const technologyFeatures = [
-  { icon: Wind, title: "Advanced Cold-air", text: "Diffusion technology" },
-  { icon: SlidersHorizontal, title: "Adjustable Intensity", text: "& timer settings" },
-  { icon: Droplets, title: "Long-lasting", text: "Elegant & aromatic" },
-  { icon: VolumeX, title: "Low Noise", text: "Operation" },
-  { icon: Wrench, title: "Easy Installation", text: "& low maintenance" },
-  { icon: Sparkles, title: "Compatible with", text: "Premium fragrance oils" },
-];
-
-export function TechnologyGrid() {
-  return (
-    <div className="technology-grid">
-      {technologyFeatures.map(({ icon: Icon, title, text }, i) => (
-        <div
-          className="technology-feature reveal"
-          style={{ "--delay": `${i * 70}ms` } as React.CSSProperties}
-          key={title}
-        >
-          <span className="technology-icon">
-            <Icon size={24} strokeWidth={1.5} aria-hidden="true" />
-          </span>
-          <div>
-            <h3>{title}</h3>
-            <p>{text}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export function Breadcrumb({ items }: { items: { label: string; href?: string }[] }) {
+export function Breadcrumb({
+  items,
+}: {
+  items: { label: string; href?: string }[];
+}) {
   return (
     <nav className="breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a>
       {items.map((item, i) => (
         <span key={i}>
-          <span aria-hidden="true">/</span>
+          <span aria-hidden="true" className="breadcrumb-sep">
+            /
+          </span>
           {item.href ? (
             <a href={item.href}>{item.label}</a>
           ) : (
@@ -342,25 +443,38 @@ export function PageHero({
   title,
   description,
   breadcrumb,
-  image = "hero-lobby",
+  image = "hero-stage",
+  studio = false,
 }: {
   label: string;
   title: React.ReactNode;
   description: string;
   breadcrumb?: { label: string; href?: string }[];
   image?: string;
+  studio?: boolean;
 }) {
   return (
-    <section className="page-hero" data-scroll>
-      <Image src={`/images/${image}.webp`} alt="" fill priority sizes="100vw" className="page-hero-bg" />
-      <div className="page-hero-shade" />
-      <div className="mist mist-a" aria-hidden="true" />
-      <div className="mist mist-b" aria-hidden="true" />
-      <div className="container page-hero-content">
-        {breadcrumb && <Breadcrumb items={breadcrumb} />}
-        <Eyebrow light>{label}</Eyebrow>
-        <h1>{title}</h1>
-        <p>{description}</p>
+    <section className="page-hero">
+      <div className="page-hero-glow" aria-hidden="true" />
+      <div className="container page-hero-grid">
+        <div className="page-hero-copy">
+          {breadcrumb && <Breadcrumb items={breadcrumb} />}
+          <Eyebrow>{label}</Eyebrow>
+          <h1>{title}</h1>
+          <p className="lede">{description}</p>
+        </div>
+        <div
+          className={`page-hero-media ${studio ? "is-studio" : ""}`}
+          data-scroll
+        >
+          <Image
+            src={`/images/${image}.webp`}
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 860px) 92vw, 42vw"
+          />
+        </div>
       </div>
     </section>
   );
@@ -369,28 +483,34 @@ export function PageHero({
 export function CTA({
   title = (
     <>
-      Ready to Transform
+      Create a signature scent
       <br />
-      Your Space with <span className="text-gradient">Aroma airs?</span>
+      experience for your space.
     </>
   ),
 }: {
   title?: React.ReactNode;
 }) {
   return (
-    <section className="cta-section" data-scroll>
-      <Image src="/images/hero-lobby.webp" alt="" fill sizes="100vw" className="cta-bg" />
-      <div className="container cta-content reveal">
+    <section className="cta" data-scroll>
+      <div className="cta-media">
+        <Image src="/images/hero-lobby.webp" alt="" fill sizes="100vw" />
+      </div>
+      <div className="container cta-inner reveal">
         <div>
+          <Eyebrow light>LET&rsquo;S TALK</Eyebrow>
           <h2>{title}</h2>
-          <p>Get in touch with us for product details, customised solutions or any queries.</p>
+          <p>
+            Product details, fragrance advice or a complete scenting solution
+            &mdash; our New Delhi team is a message away.
+          </p>
         </div>
-        <div className="cta-buttons">
-          <Button href={whatsapp()} variant="green" arrow={false}>
-            <WhatsAppIcon size={21} /> Chat on WhatsApp
+        <div className="cta-actions">
+          <Button href={whatsapp()} variant="whatsapp" arrow={false}>
+            <WhatsAppIcon size={20} /> Chat on WhatsApp
           </Button>
-          <Button href={callUrl} arrow={false}>
-            <Phone size={19} /> Call Now
+          <Button href={callUrl} variant="light" arrow={false}>
+            <Phone size={18} /> Call Now
           </Button>
         </div>
       </div>
@@ -403,10 +523,51 @@ export function CheckList({ items }: { items: string[] }) {
     <ul className="check-list">
       {items.map((t) => (
         <li key={t}>
-          <Check size={16} aria-hidden="true" />
+          <span>
+            <Check size={14} aria-hidden="true" />
+          </span>
           {t}
         </li>
       ))}
     </ul>
+  );
+}
+
+/** Infinite, CSS-driven horizontal slideshow. Content is duplicated for a seamless loop. */
+export function Marquee({
+  children,
+  reverse = false,
+  speed = 40,
+  className = "",
+  label,
+}: {
+  children: React.ReactNode;
+  reverse?: boolean;
+  speed?: number;
+  className?: string;
+  label?: string;
+}) {
+  return (
+    <div
+      className={`marquee ${reverse ? "is-reverse" : ""} ${className}`}
+      style={{ "--speed": `${speed}s` } as React.CSSProperties}
+      aria-label={label}
+      role={label ? "region" : undefined}
+    >
+      <div className="marquee-track">
+        <div className="marquee-group">{children}</div>
+        <div className="marquee-group" aria-hidden="true" inert>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function DetailLink({ href, children }: { href: string } & Children) {
+  return (
+    <a href={href} className="detail-link">
+      {children} <ArrowRight size={15} aria-hidden="true" />
+    </a>
   );
 }

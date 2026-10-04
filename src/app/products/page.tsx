@@ -3,7 +3,7 @@ import { PageHero, CTA } from "@/components/ui";
 import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta(
   "Our Products",
-  "Explore the Aroma airs collection of compact, wall mounted and floor standing fragrance diffusers and premium fragrance oils.",
+  "Explore the Aroma Airs collection of compact, wall mounted and floor standing fragrance diffusers and premium fragrance oils.",
   "/products",
 );
 export default function ProductsPage() {
@@ -20,7 +20,7 @@ export default function ProductsPage() {
         }
         description="Considered design, a choice of finishes and a fragrance that feels like you. Explore our diffuser and oil collection."
         breadcrumb={[{ label: "Products" }]}
-        image="hero-desktop"
+        image="hero-stage"
       />
       <section className="section">
         <div className="container">

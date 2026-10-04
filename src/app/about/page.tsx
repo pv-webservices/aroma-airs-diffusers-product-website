@@ -10,7 +10,7 @@ import {
 } from "@/components/ui";
 export const metadata = pageMeta(
   "About Us",
-  "Meet Aroma airs, the New Delhi fragrance diffuser and oil brand from VS Incorporation. Thoughtful scenting solutions for homes, hospitality and businesses.",
+  "Meet Aroma Airs, the New Delhi fragrance diffuser and oil brand from VS Incorporation. Thoughtful scenting solutions for homes, hospitality and businesses.",
   "/about",
 );
 export default function AboutPage() {
@@ -35,7 +35,7 @@ export default function AboutPage() {
             <SectionHeading
               label="OUR APPROACH"
               title="Good design is something you feel."
-              description="Aroma airs offers fragrance diffusers and oils for homes, hospitality and commercial environments. From a compact device on a reception desk to a floor-standing tower in a hotel lobby, our collection brings scent and space together."
+              description="Aroma Airs offers fragrance diffusers and oils for homes, hospitality and commercial environments. From a compact device on a reception desk to a floor-standing tower in a hotel lobby, our collection brings scent and space together."
             />
             <p className="body-copy">
               Based in New Delhi and operated by VS Incorporation, we help you
@@ -53,7 +53,7 @@ export default function AboutPage() {
           </div>
           <Photo
             name="table-lifestyle"
-            alt="Aroma airs diffuser styled on a wooden side table"
+            alt="Aroma Airs diffuser styled on a wooden side table"
             className="about-page-photo"
           />
         </div>

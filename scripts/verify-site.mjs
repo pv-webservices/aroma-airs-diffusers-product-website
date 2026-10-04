@@ -19,7 +19,7 @@ for (const route of routes) {
   const response = await fetch(base + route);
   const html = await response.text();
   const missing = route === "/does-not-exist" || route.endsWith("/unknown");
-  const document = route !== "/robots.txt" && route !== "/sitemap.xml";
+  const document = !["/robots.txt", "/sitemap.xml", "/icon.png"].includes(route);
   const title = html.match(/<title>(.*?)<\/title>/)?.[1];
   const h1s = (html.match(/<h1[ >]/g) || []).length;
   const phones = [...html.matchAll(/href="(tel:[^"]+)"/g)].map((m) => m[1]);

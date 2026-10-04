@@ -1,5 +1,5 @@
 export const business = {
-  name: "Aroma airs",
+  name: "Aroma Airs",
   legalName: "VS Incorporation",
   phone: "9015759321",
   internationalPhone: "+919015759321",
@@ -13,15 +13,16 @@ export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "";
 export function whatsapp(subject?: string) {
   const message = subject
-    ? `Hello Aroma airs, I am interested in ${subject}. Please share more details.`
-    : "Hello Aroma airs, I would like to know more about your fragrance diffuser solutions.";
+    ? `Hello Aroma Airs, I am interested in ${subject}. Please share more details.`
+    : "Hello Aroma Airs, I would like to know more about your fragrance diffuser solutions.";
   return `https://wa.me/${business.internationalPhone.replace("+", "")}?text=${encodeURIComponent(message)}`;
 }
 export const callUrl = `tel:${business.internationalPhone}`;
 export type Product = {
   slug: string;
   name: string;
-  category: "compact" | "wall" | "tower";
+  category: "compact" | "wall" | "tower" | "hvac" | "dispenser";
+  technology?: "Cold-air diffusion" | "Automatic aerosol spray";
   label: string;
   image: string;
   gallery: string[];
@@ -37,8 +38,8 @@ export const products: Product[] = [
     name: "Compact",
     category: "compact",
     label: "A little space. A lasting impression.",
-    image: "compact",
-    gallery: ["compact", "hero-trio", "table-lifestyle"],
+    image: "s-compact",
+    gallery: ["s-compact", "hero-trio", "table-lifestyle"],
     description:
       "A compact black diffuser for a welcoming, consistent fragrance experience. Designed to sit neatly on a tabletop or mount on a wall.",
     colors: ["Black"],
@@ -67,8 +68,8 @@ export const products: Product[] = [
     name: "Compact White",
     category: "compact",
     label: "Quietly elegant. Beautifully compact.",
-    image: "compact-white",
-    gallery: ["compact-white", "hero-trio"],
+    image: "s-compact-white",
+    gallery: ["s-compact-white", "hero-trio"],
     description:
       "A white finish with a distinctive front panel, designed to complement lighter interiors. A discreet fragrance solution for smaller spaces.",
     colors: ["White"],
@@ -89,9 +90,9 @@ export const products: Product[] = [
     name: "Wall Pro Black",
     category: "wall",
     label: "More atmosphere. Less footprint.",
-    image: "wall-pro-black",
+    image: "s-wall-pro-black",
     gallery: [
-      "wall-pro-black",
+      "s-wall-pro-black",
       "wall-interior-black",
       "wall-back",
       "wall-lifestyle",
@@ -116,8 +117,8 @@ export const products: Product[] = [
     name: "Wall Pro White",
     category: "wall",
     label: "Blends into your space. Stands out in experience.",
-    image: "wall-pro-white-product",
-    gallery: ["wall-pro-white-product", "wall-interior-white"],
+    image: "s-wall-pro-white-product",
+    gallery: ["s-wall-pro-white-product", "wall-interior-white"],
     description:
       "A clean white wall diffuser that sits comfortably in modern interiors. A practical way to introduce a consistent scent to shared spaces.",
     colors: ["White"],
@@ -142,10 +143,11 @@ export const products: Product[] = [
     name: "Tower Series",
     category: "tower",
     label: "A statement in design. A signature in scent.",
-    image: "tower-product",
+    image: "s-tower-product",
     gallery: [
-      "tower-product",
+      "s-tower-product",
       "tower-pair",
+      "hero-stage",
       "tower-controls",
       "hotel-lifestyle",
     ],
@@ -170,6 +172,133 @@ export const products: Product[] = [
       "Spas & Wellness",
     ],
   },
+  {
+    slug: "square-tower",
+    name: "Square Tower",
+    category: "tower",
+    label: "Simple design. Pure atmosphere.",
+    image: "p-square-tower",
+    gallery: ["p-square-tower", "square-tower", "hero-stage", "latest-catalogue-1"],
+    description:
+      "A floor-standing square tower with a clean architectural silhouette. Available in Classic Black or Simple Silver for homes, lobbies and hospitality interiors.",
+    colors: ["Classic Black", "Simple Silver"],
+    features: [
+      "Floor-standing design",
+      "800 ml oil capacity",
+      "Cold-air nebulizing technology",
+    ],
+    specs: {
+      "Coverage area": "Up to 3,000 sq. ft.",
+      "Oil capacity": "800 ml",
+      "Power supply": "DC 12V / 5W",
+      "Noise level": "Under 35 dB",
+      Material: "ABS",
+      Installation: "Floor standing",
+      Dimensions: "170 × 170 × 620 mm",
+    },
+    applications: [
+      "Hotels & Resorts",
+      "Offices & Workspaces",
+      "Restaurants & Cafés",
+      "Spas & Wellness",
+      "Homes & Apartments",
+    ],
+  },
+  {
+    slug: "hvac-power",
+    name: "HVAC Power",
+    category: "hvac",
+    label: "Pure scent. A considered environment.",
+    image: "p-hvac-power",
+    gallery: ["p-hvac-power", "hvac-power", "latest-catalogue-2"],
+    description:
+      "A fragrance diffuser for HVAC scenting, with a large oil reservoir and black or white finishes. Speak to our team about your ventilation system, installation and room layout.",
+    colors: ["Black", "White"],
+    features: [
+      "HVAC scenting solution",
+      "5,000 ml oil capacity",
+      "Floor-standing / tabletop",
+    ],
+    specs: {
+      "Coverage area": "Up to 3,000 sq. ft.",
+      "Oil capacity": "5,000 ml",
+      "Power supply": "AC 110–240V / 25W",
+      Material: "Stainless steel & ABS",
+      Installation: "Floor standing / tabletop",
+    },
+    applications: [
+      "Hotels & Resorts",
+      "Offices & Workspaces",
+      "Restaurants & Cafés",
+      "Spas & Wellness",
+      "Homes & Apartments",
+    ],
+  },
+  {
+    slug: "cloudy",
+    name: "Cloudy",
+    category: "compact",
+    label: "A softer silhouette. A welcoming space.",
+    image: "p-cloudy",
+    gallery: ["p-cloudy", "cloudy", "hero-stage-mobile", "latest-catalogue-4"],
+    description:
+      "A white fragrance diffuser with a softly rounded body and textured front panel. Cloudy brings cold-air diffusion and intelligent scheduling into a clean, considered design.",
+    colors: ["White"],
+    features: [
+      "Cold-air diffusion",
+      "Intelligent scheduling",
+      "Textured white finish",
+    ],
+    specs: {
+      Colour: "White",
+      Technology: "Cold-air diffusion",
+      "Catalogue number": "1.863",
+      Scheduling: "Intelligent scheduling",
+    },
+    applications: [
+      "Homes & Apartments",
+      "Offices & Workspaces",
+      "Retail Stores",
+    ],
+  },
+  {
+    slug: "automatic-dispenser",
+    name: "Automatic Dispenser",
+    category: "dispenser",
+    technology: "Automatic aerosol spray",
+    label: "A fresh welcome, every time.",
+    image: "p-automatic-dispenser",
+    gallery: [
+      "p-automatic-dispenser",
+      "automatic-dispenser",
+      "latest-catalogue-5",
+      "latest-catalogue-3",
+    ],
+    description:
+      "The YK3180 automatic aerosol fragrance dispenser offers timed spray intervals and day, night or 24-hour operation. A refillable option for washrooms and small spaces.",
+    colors: ["White"],
+    features: [
+      "5 / 10 / 20 minute intervals",
+      "Day / night / 24-hour modes",
+      "Powered by two AA batteries",
+    ],
+    specs: {
+      Model: "YK3180",
+      "Spray interval": "5 / 10 / 20 minutes",
+      "Operating modes": "Day / night / 24H",
+      "Battery type": "Two AA batteries",
+      "Refill format": "300 ml perfume can",
+      Dimensions: "74 × 78 × 200 mm",
+      Weight: "301 g",
+    },
+    applications: [
+      "Hotels & Resorts",
+      "Offices & Workspaces",
+      "Restaurants & Cafés",
+      "Spas & Wellness",
+      "Homes & Apartments",
+    ],
+  },
 ];
 export type Fragrance = {
   slug: string;
@@ -181,6 +310,76 @@ export type Fragrance = {
   collection: "oil" | "signature";
 };
 export const fragrances: Fragrance[] = [
+  {
+    slug: "jasmine",
+    name: "Jasmine",
+    family: "Floral",
+    mood: "Floral fragrance oil",
+    image: "p-oil-jasmine",
+    description:
+      "Jasmine floral fragrance oil, shown in the current Aroma Airs collection. Ask our team about availability, bottle sizes and diffuser compatibility.",
+    collection: "oil",
+  },
+  {
+    slug: "rose",
+    name: "Rose",
+    family: "Floral",
+    mood: "Fragrance oil collection",
+    image: "p-oil-rose",
+    description:
+      "Rose fragrance oil from the current labelled collection. Contact our team for fragrance details and compatible diffuser models.",
+    collection: "oil",
+  },
+  {
+    slug: "oud",
+    name: "Oud",
+    family: "Woody",
+    mood: "Luxury fragrance oil",
+    image: "p-oil-oud",
+    description:
+      "Oud luxury fragrance oil from Aroma Airs. Speak to our team about the fragrance, compatible diffusers and its availability.",
+    collection: "oil",
+  },
+  {
+    slug: "misty-m",
+    name: "Misty M.",
+    family: "Signature",
+    mood: "Luxury fragrance oil",
+    image: "p-oil-misty-m",
+    description:
+      "Misty M. appears in the current luxury fragrance oil collection. Ask our team about its scent profile, bottle sizes and availability.",
+    collection: "oil",
+  },
+  {
+    slug: "buneez",
+    name: "Buneez",
+    family: "Signature",
+    mood: "Fragrance oil collection",
+    image: "p-oil-buneez",
+    description:
+      "Buneez fragrance oil, shown in the latest Aroma Airs bottle collection. Contact our team for fragrance notes and availability.",
+    collection: "oil",
+  },
+  {
+    slug: "misfit",
+    name: "Misfit",
+    family: "Signature",
+    mood: "Fragrance oil collection",
+    image: "p-oil-misfit",
+    description:
+      "Misfit fragrance oil from the current labelled collection. Ask our team about the scent profile and compatible diffuser models.",
+    collection: "oil",
+  },
+  {
+    slug: "aqua",
+    name: "Aqua",
+    family: "Signature",
+    mood: "Fragrance oil collection",
+    image: "p-oil-aqua",
+    description:
+      "Discover Aqua in the Aroma Airs fragrance oil collection. Speak to our team about availability, fragrance details and compatible diffusers.",
+    collection: "oil",
+  },
   {
     slug: "gucci-flora",
     name: "Gucci Flora",
@@ -335,6 +534,27 @@ export const categories = [
       "Find your signature scent in our collection of floral, fresh, citrus and woody fragrances.",
     key: "oil",
   },
+  {
+    slug: "tower-diffusers",
+    name: "Tower Diffusers",
+    description:
+      "Floor-standing scenting with an architectural presence. Explore the Tower Series and Square Tower.",
+    key: "tower",
+  },
+  {
+    slug: "hvac-diffusers",
+    name: "HVAC Scenting",
+    description:
+      "Explore HVAC Power and talk to our team about an installation for your space.",
+    key: "hvac",
+  },
+  {
+    slug: "automatic-dispensers",
+    name: "Automatic Dispensers",
+    description:
+      "Timed aerosol fragrance spray for washrooms and small spaces.",
+    key: "dispenser",
+  },
 ];
 export const applications = [
   {
@@ -394,7 +614,7 @@ export const applications = [
   {
     slug: "spas-wellness",
     name: "Spas & Wellness",
-    image: "spa",
+    image: "hero-lobby",
     icon: "leaf",
     description:
       "Introduce a gentle fragrance into reception and relaxation areas to complement a thoughtfully designed space.",

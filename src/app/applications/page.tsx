@@ -10,7 +10,7 @@ import {
 } from "@/components/ui";
 export const metadata = pageMeta(
   "Scenting Applications",
-  "Explore Aroma airs scenting solutions for hotels, offices, shops, homes, restaurants and wellness spaces. Match your diffuser and fragrance to your environment.",
+  "Explore Aroma Airs scenting solutions for hotels, offices, shops, homes, restaurants and wellness spaces. Match your diffuser and fragrance to your environment.",
   "/applications",
 );
 export default function ApplicationsPage() {
@@ -33,7 +33,7 @@ export default function ApplicationsPage() {
           {applications.map((a, i) => (
             <article
               id={a.slug}
-              className={`application-detail ${i % 2 ? "reverse" : ""}`}
+              className={`application-detail reveal ${i % 2 ? "reverse" : ""}`}
               key={a.slug}
             >
               <Photo name={a.image} alt={`${a.name} interior inspiration`} />

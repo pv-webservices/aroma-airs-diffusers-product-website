@@ -3,7 +3,7 @@ import { business } from "@/lib/data";
 import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta(
   "Privacy Policy",
-  "How Aroma airs uses contact information provided in product and fragrance enquiries.",
+  "How Aroma Airs uses contact information provided in product and fragrance enquiries.",
   "/privacy-policy",
 );
 export default function PrivacyPage() {
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
       <article className="container legal-content">
         <h2>Who we are</h2>
         <p>
-          Aroma airs is operated by {business.legalName}, at {business.address}.
+          Aroma Airs is operated by {business.legalName}, at {business.address}.
           Contact us at{" "}
           <a href={`mailto:${business.email}`}>{business.email}</a> with
           questions about your information.

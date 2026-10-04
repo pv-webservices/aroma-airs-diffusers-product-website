@@ -13,7 +13,7 @@ export default function EnquiryForm({ configured }: { configured: boolean }) {
     const values = Object.fromEntries(new FormData(form).entries());
     setStatus("");
     if (!configured) {
-      const text = `Hello Aroma airs, I would like to enquire about ${values.product || "a scenting solution"}.\nName: ${values.name}\nPhone: ${values.phone}\n${values.email ? `Email: ${values.email}\n` : ""}${values.company ? `Company: ${values.company}\n` : ""}City: ${values.city}\nMessage: ${values.message}`;
+      const text = `Hello Aroma Airs, I would like to enquire about ${values.product || "a scenting solution"}.\nName: ${values.name}\nPhone: ${values.phone}\n${values.email ? `Email: ${values.email}\n` : ""}${values.company ? `Company: ${values.company}\n` : ""}City: ${values.city}\nSpace type: ${values.spaceType || "Please advise"}\nMessage: ${values.message}`;
       const href =
         whatsapp().split("?")[0] + `?text=${encodeURIComponent(text)}`;
       window.open(href, "_blank", "noopener,noreferrer");
@@ -130,6 +130,24 @@ export default function EnquiryForm({ configured }: { configured: boolean }) {
           </select>
         </label>
         <label className="full-width">
+          Space type
+          <select name="spaceType" defaultValue="">
+            <option value="">Help me choose</option>
+            {[
+              "Home / Apartment",
+              "Office / Workspace",
+              "Hotel / Resort",
+              "Retail Store",
+              "Restaurant / Café",
+              "Hospital / Clinic",
+              "Spa / Wellness",
+              "Other",
+            ].map((space) => (
+              <option key={space}>{space}</option>
+            ))}
+          </select>
+        </label>
+        <label className="full-width">
           Your message <span>*</span>
           <textarea
             name="message"
@@ -155,7 +173,7 @@ export default function EnquiryForm({ configured }: { configured: boolean }) {
         </span>
       </label>
       <button
-        className={`button button-${configured ? "pink" : "green"} form-submit`}
+        className={`btn btn-${configured ? "primary" : "whatsapp"} form-submit`}
         disabled={busy}
         type="submit"
       >

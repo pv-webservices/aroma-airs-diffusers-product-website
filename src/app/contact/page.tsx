@@ -5,7 +5,7 @@ import { PageHero, Button, WhatsAppIcon, Eyebrow } from "@/components/ui";
 import EnquiryForm from "@/components/enquiry-form";
 export const metadata = pageMeta(
   "Contact Us",
-  "Contact Aroma airs at VS Incorporation, Mahipalpur, New Delhi. Call 9015759321 or enquire on WhatsApp about fragrance diffusers and oils.",
+  "Contact Aroma Airs at VS Incorporation, Mahipalpur, New Delhi. Call 9015759321 or enquire on WhatsApp about fragrance diffusers and oils.",
   "/contact",
 );
 export default function ContactPage() {
@@ -77,7 +77,7 @@ export default function ContactPage() {
               </div>
             </div>
             <p className="contact-gst">GSTIN: {business.gstin}</p>
-            <Button href={whatsapp()} variant="green" arrow={false}>
+            <Button href={whatsapp()} variant="whatsapp" arrow={false}>
               <WhatsAppIcon />
               Chat on WhatsApp
             </Button>

@@ -1,51 +1,63 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import "./site.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Motion from "@/components/motion";
 import { business, siteUrl } from "@/lib/data";
-const manrope = localFont({
+const cormorant = localFont({
   src: [
     {
-      path: "../../node_modules/@fontsource/manrope/files/manrope-latin-500-normal.woff2",
+      path: "../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../../node_modules/@fontsource/manrope/files/manrope-latin-700-normal.woff2",
-      weight: "700",
+      path: "../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-600-normal.woff2",
+      weight: "600",
       style: "normal",
     },
     {
-      path: "../../node_modules/@fontsource/manrope/files/manrope-latin-800-normal.woff2",
-      weight: "800",
-      style: "normal",
+      path: "../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-italic.woff2",
+      weight: "500",
+      style: "italic",
     },
   ],
-  variable: "--font-manrope",
+  variable: "--font-display",
   display: "swap",
 });
 const dmSans = localFont({
-  src: "../../node_modules/@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2",
-  weight: "400",
-  style: "normal",
-  variable: "--font-dm-sans",
+  src: [
+    {
+      path: "../../node_modules/@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../node_modules/@fontsource/dm-sans/files/dm-sans-latin-500-normal.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../node_modules/@fontsource/dm-sans/files/dm-sans-latin-600-normal.woff2",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  variable: "--font-body",
   display: "swap",
 });
 export const metadata: Metadata = {
   title: {
-    default: "Aroma airs | Fragrance for Every Space",
-    template: "%s | Aroma airs",
+    default: "Aroma Airs | Fragrance for Every Space",
+    template: "%s | Aroma Airs",
   },
   description:
-    "Discover Aroma airs fragrance diffusers and oils for homes, hotels, offices and commercial spaces. Contact our New Delhi team for a tailored scenting solution.",
+    "Discover Aroma Airs fragrance diffusers and oils for homes, hotels, offices and commercial spaces. Contact our New Delhi team for a tailored scenting solution.",
   ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
   robots: siteUrl
     ? { index: true, follow: true }
     : { index: false, follow: false },
-  icons: { icon: "/icon.svg" },
 };
 export default function RootLayout({
   children,
@@ -60,7 +72,7 @@ export default function RootLayout({
     telephone: business.internationalPhone,
     email: business.email,
     ...(siteUrl
-      ? { url: siteUrl, image: siteUrl + "/images/hero-desktop.webp" }
+      ? { url: siteUrl, image: siteUrl + "/images/hero-stage.webp" }
       : {}),
     address: {
       "@type": "PostalAddress",
@@ -73,8 +85,8 @@ export default function RootLayout({
     },
   };
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${manrope.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${cormorant.variable}`} suppressHydrationWarning>
+      <body>
         <script
           dangerouslySetInnerHTML={{
             __html: "document.documentElement.classList.add('js')",

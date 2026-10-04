@@ -3,7 +3,7 @@ import { PageHero, CTA } from "@/components/ui";
 import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta(
   "Gallery",
-  "See Aroma airs diffuser designs, product details, fragrance oils and lifestyle imagery. Explore our gallery of scenting inspiration.",
+  "See Aroma Airs diffuser designs, product details, fragrance oils and lifestyle imagery. Explore our gallery of scenting inspiration.",
   "/gallery",
 );
 export default function GalleryPage() {

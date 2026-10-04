@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const COUNT_DURATION_MS = 1600;
+const MAX_TILT_DEG = 5;
 
 /** Animates a number from 0 to the element's data-count value. */
 function countUp(el: HTMLElement): void {
@@ -19,10 +20,61 @@ function countUp(el: HTMLElement): void {
   requestAnimationFrame(tick);
 }
 
+/** Pointer-driven tilt and light spot for [data-tilt] cards (mouse, pen and touch). */
+function setupTilt(): () => void {
+  let active: HTMLElement | null = null;
+  const reset = (el: HTMLElement | null) => {
+    if (!el) return;
+    el.classList.remove("is-pressed");
+    el.style.removeProperty("--rx");
+    el.style.removeProperty("--ry");
+  };
+  const move = (event: PointerEvent) => {
+    const el = (event.target as Element | null)?.closest<HTMLElement>("[data-tilt]") ?? null;
+    if (el !== active) {
+      reset(active);
+      active = el;
+    }
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    el.style.setProperty("--mx", `${(x * 100).toFixed(1)}%`);
+    el.style.setProperty("--my", `${(y * 100).toFixed(1)}%`);
+    if (event.pointerType === "mouse") {
+      el.style.setProperty("--rx", `${((0.5 - y) * MAX_TILT_DEG).toFixed(2)}deg`);
+      el.style.setProperty("--ry", `${((x - 0.5) * MAX_TILT_DEG).toFixed(2)}deg`);
+    }
+  };
+  const down = (event: PointerEvent) => {
+    if (event.pointerType === "mouse") return;
+    move(event);
+    active?.classList.add("is-pressed");
+  };
+  const up = () => active?.classList.remove("is-pressed");
+  const leave = () => {
+    reset(active);
+    active = null;
+  };
+  document.addEventListener("pointermove", move, { passive: true });
+  document.addEventListener("pointerdown", down, { passive: true });
+  document.addEventListener("pointerup", up, { passive: true });
+  document.addEventListener("pointercancel", leave, { passive: true });
+  document.documentElement.addEventListener("pointerleave", leave);
+  return () => {
+    document.removeEventListener("pointermove", move);
+    document.removeEventListener("pointerdown", down);
+    document.removeEventListener("pointerup", up);
+    document.removeEventListener("pointercancel", leave);
+    document.documentElement.removeEventListener("pointerleave", leave);
+  };
+}
+
 /**
  * Site-wide motion: reveal-on-scroll (.reveal), count-up ([data-count]),
- * and scroll-linked progress (--progress on [data-scroll]) used by CSS for
- * parallax "move" and "zoom" effects. Disabled when reduced motion is preferred.
+ * scroll-linked progress (--progress on [data-scroll]) used by CSS for
+ * zoom/move effects, and pointer tilt on cards. Reduced motion disables
+ * everything except final states.
  */
 export default function Motion() {
   const pathname = usePathname();
@@ -65,6 +117,7 @@ export default function Motion() {
     const update = () => {
       frame = 0;
       const vh = window.innerHeight;
+      document.documentElement.classList.toggle("is-past-hero", window.scrollY > vh * 0.6);
       for (const el of scrollers) {
         const rect = el.getBoundingClientRect();
         if (rect.bottom < -100 || rect.top > vh + 100) continue;
@@ -79,12 +132,14 @@ export default function Motion() {
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    const cleanupTilt = setupTilt();
     return () => {
       revealObserver.disconnect();
       countObserver.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
+      cleanupTilt();
     };
   }, [pathname]);
   return null;

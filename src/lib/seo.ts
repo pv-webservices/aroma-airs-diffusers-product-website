@@ -4,7 +4,7 @@ export function pageMeta(
   title: string,
   description: string,
   path: string,
-  image = "/images/hero-stage.webp",
+  image = "/images/gallery-gallery-image-9.webp",
 ): Metadata {
   return {
     title,

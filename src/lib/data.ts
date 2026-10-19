@@ -26,6 +26,8 @@ export type Product = {
   label: string;
   image: string;
   gallery: string[];
+  showFinish?: boolean;
+  finishGalleries?: Record<string, string[]>;
   description: string;
   colors: string[];
   features: string[];
@@ -34,271 +36,304 @@ export type Product = {
 };
 export const products: Product[] = [
   {
-    slug: "compact",
-    name: "Compact",
-    category: "compact",
-    label: "A little space. A lasting impression.",
-    image: "s-compact",
-    gallery: ["s-compact", "hero-trio", "table-lifestyle"],
-    description:
-      "A compact black diffuser for a welcoming, consistent fragrance experience. Designed to sit neatly on a tabletop or mount on a wall.",
-    colors: ["Black"],
-    features: [
+    "slug": "compact",
+    "name": "Compact Black",
+    "category": "compact",
+    "label": "A little space. A lasting impression.",
+    "image": "s-compact",
+    "gallery": [
+      "s-compact"
+    ],
+    "description": "A compact cold-air fragrance diffuser in a discreet black finish. Place it on a tabletop or mount it on a wall to bring a consistent scent to reception desks, private offices and smaller interiors. Choose placement and settings with our team to suit your space.",
+    "colors": [
+      "Black"
+    ],
+    "features": [
       "Compact, considered design",
       "Wall mounted or tabletop",
-      "Ideal for smaller spaces",
+      "Ideal for smaller spaces"
     ],
-    specs: {
+    "specs": {
       "Coverage area": "Up to 1,000 sq. ft.",
       "Oil capacity": "150 ml",
       "Power supply": "DC 12V / 5W",
       "Noise level": "Under 35 dB",
-      Material: "Premium ABS",
-      Installation: "Wall mounted / tabletop",
-      Dimensions: "170 × 85 × 220 mm",
+      "Material": "Premium ABS",
+      "Installation": "Wall mounted / tabletop",
+      "Dimensions": "170 × 85 × 220 mm"
     },
-    applications: [
+    "applications": [
       "Homes & Apartments",
       "Offices & Workspaces",
-      "Hotels & Resorts",
+      "Hotels & Resorts"
     ],
+    "showFinish": true
   },
   {
-    slug: "compact-white",
-    name: "Compact White",
-    category: "compact",
-    label: "Quietly elegant. Beautifully compact.",
-    image: "s-compact-white",
-    gallery: ["s-compact-white", "hero-trio"],
-    description:
-      "A white finish with a distinctive front panel, designed to complement lighter interiors. A discreet fragrance solution for smaller spaces.",
-    colors: ["White"],
-    features: [
-      "Compact, elegant design",
-      "Wall mountable",
-      "Ideal for smaller spaces",
+    "slug": "compact-white",
+    "name": "Compact White",
+    "category": "compact",
+    "label": "Quietly elegant. Beautifully compact.",
+    "image": "new-compact-white-img-1",
+    "gallery": [
+      "new-compact-white-img-1",
+      "new-compact-white-img-2",
+      "new-compact-white-img-3"
     ],
-    specs: { Colour: "White", Installation: "Wall mounted" },
-    applications: [
+    "description": "A compact cold-air fragrance diffuser with a clean white body and a refillable oil bottle. Designed for wall-mounted or tabletop placement, it brings a considered fragrance experience to homes, offices and reception areas. The accessible bottle compartment makes routine refilling straightforward.",
+    "colors": [
+      "White"
+    ],
+    "features": [
+      "Cold-air fragrance diffusion",
+      "Wall mounted or tabletop",
+      "Refillable oil bottle"
+    ],
+    "specs": {
+      "Colour": "White",
+      "Installation": "Wall mounted / tabletop",
+      "Technology": "Cold-air diffusion"
+    },
+    "applications": [
       "Homes & Apartments",
       "Offices & Workspaces",
-      "Hotels & Resorts",
-    ],
+      "Hotels & Resorts"
+    ]
   },
   {
-    slug: "wall-pro-black",
-    name: "Wall Pro Black",
-    category: "wall",
-    label: "More atmosphere. Less footprint.",
-    image: "s-wall-pro-black",
-    gallery: [
-      "s-wall-pro-black",
-      "wall-interior-black",
-      "wall-back",
-      "wall-lifestyle",
+    "slug": "wall-pro-black",
+    "name": "Wall Pro Black",
+    "category": "wall",
+    "label": "More atmosphere. Less footprint.",
+    "image": "new-wall-pro-black-img-1",
+    "gallery": [
+      "new-wall-pro-black-img-1",
+      "new-wall-pro-black-img-2",
+      "new-wall-pro-black-img-3",
+      "new-wall-pro-black-img-4",
+      "new-wall-pro-black-img-5"
     ],
-    description:
-      "A wall-mounted scenting solution with a confident black finish. Bring fragrance into commercial spaces while keeping floors and surfaces clear.",
-    colors: ["Black"],
-    features: [
+    "description": "A cold-air scenting diffuser in a black finish, designed to bring a consistent fragrance to reception areas, retail interiors and hospitality spaces. Its wall-mounted format keeps surfaces clear, while an accessible internal oil bottle makes refilling convenient. Speak to our team about placement and the right setup for your room.",
+    "colors": [
+      "Black"
+    ],
+    "features": [
+      "Cold-air fragrance diffusion",
       "Wall-mounted design",
-      "For larger spaces",
-      "Easy-access oil compartment",
+      "Accessible refillable oil bottle"
     ],
-    specs: {
-      Colour: "Black",
-      Installation: "Wall mounted",
-      Technology: "Cold-air diffusion",
+    "specs": {
+      "Colour": "Black",
+      "Installation": "Wall mounted",
+      "Technology": "Cold-air diffusion"
     },
-    applications: ["Retail Stores", "Hotels & Resorts", "Restaurants & Cafés"],
+    "applications": [
+      "Retail Stores",
+      "Hotels & Resorts",
+      "Restaurants & Cafés"
+    ]
   },
   {
-    slug: "wall-pro-white",
-    name: "Wall Pro White",
-    category: "wall",
-    label: "Blends into your space. Stands out in experience.",
-    image: "s-wall-pro-white-product",
-    gallery: ["s-wall-pro-white-product", "wall-interior-white"],
-    description:
-      "A clean white wall diffuser that sits comfortably in modern interiors. A practical way to introduce a consistent scent to shared spaces.",
-    colors: ["White"],
-    features: [
-      "Clean, white finish",
-      "Wall-mounted design",
-      "For larger spaces",
+    "slug": "wall-pro-white",
+    "name": "Wall Pro White",
+    "category": "wall",
+    "label": "Blends into your space. Stands out in experience.",
+    "image": "new-wall-pro-white-img-1",
+    "gallery": [
+      "new-wall-pro-white-img-1",
+      "new-wall-pro-white-img-2",
+      "new-wall-pro-white-img-3",
+      "new-wall-pro-white-img-4",
+      "new-wall-pro-white-img-5",
+      "new-wall-pro-white-img-6",
+      "new-wall-pro-white-img-7",
+      "new-wall-pro-white-img-8"
     ],
-    specs: {
-      Colour: "White",
-      Installation: "Wall mounted",
-      Technology: "Cold-air diffusion",
+    "description": "A cold-air scenting diffuser in a white finish, designed to bring a consistent fragrance to reception areas, retail interiors and hospitality spaces. Its wall-mounted format keeps surfaces clear, while an accessible internal oil bottle makes refilling convenient. Speak to our team about placement and the right setup for your room.",
+    "colors": [
+      "White"
+    ],
+    "features": [
+      "Cold-air fragrance diffusion",
+      "Wall-mounted design",
+      "Accessible refillable oil bottle"
+    ],
+    "specs": {
+      "Colour": "White",
+      "Installation": "Wall mounted",
+      "Technology": "Cold-air diffusion"
     },
-    applications: [
+    "applications": [
       "Offices & Workspaces",
       "Hotels & Resorts",
-      "Homes & Apartments",
-    ],
+      "Homes & Apartments"
+    ]
   },
   {
-    slug: "tower-series",
-    name: "Tower Series",
-    category: "tower",
-    label: "A statement in design. A signature in scent.",
-    image: "s-tower-product",
-    gallery: [
+    "slug": "tower-series",
+    "name": "Tower Series",
+    "category": "tower",
+    "label": "A statement in design. A signature in scent.",
+    "image": "s-tower-product",
+    "gallery": [
       "s-tower-product",
       "tower-pair",
-      "hero-stage",
-      "tower-controls",
-      "hotel-lifestyle",
+      "new-tower-series-black-1",
+      "new-tower-series-black-2",
+      "new-tower-series-black-3",
+      "new-tower-series-black-4"
     ],
-    description:
-      "A refined, floor-standing diffuser for lobbies, lounges and open interiors. Choose Classic Black or Simple Silver to complement your space.",
-    colors: ["Classic Black", "Simple Silver"],
-    features: [
+    "description": "A floor-standing cold-air diffuser with a refined tower silhouette for lobbies, lounges and open interiors. The 800 ml oil bottle lifts out for convenient refilling, while touch and Bluetooth controls help you shape the scenting experience around your space. Choose Classic Black or Simple Silver to complement your interior.",
+    "colors": [
+      "Classic Black",
+      "Simple Silver"
+    ],
+    "features": [
       "Floor-standing silhouette",
       "800 ml oil capacity",
-      "Touch / Bluetooth controls",
+      "Touch / Bluetooth controls"
     ],
-    specs: {
+    "specs": {
       "Oil capacity": "800 ml",
-      Colours: "Classic Black / Simple Silver",
-      Installation: "Floor standing",
-      "Control methods": "Touch / Bluetooth",
+      "Colours": "Classic Black / Simple Silver",
+      "Installation": "Floor standing",
+      "Control methods": "Touch / Bluetooth"
     },
-    applications: [
+    "applications": [
       "Hotels & Resorts",
       "Offices & Workspaces",
       "Restaurants & Cafés",
-      "Spas & Wellness",
+      "Spas & Wellness"
     ],
+    "finishGalleries": {
+      "Classic Black": [
+        "s-tower-product",
+        "tower-pair",
+        "new-tower-series-black-1",
+        "new-tower-series-black-2",
+        "new-tower-series-black-3",
+        "new-tower-series-black-4"
+      ],
+      "Simple Silver": [
+        "new-tower-series-silver-1",
+        "tower-pair",
+        "new-tower-series-silver-2",
+        "new-tower-series-silver-3",
+        "new-tower-series-silver-4",
+        "new-tower-series-silver-5"
+      ]
+    }
   },
   {
-    slug: "square-tower",
-    name: "Square Tower",
-    category: "tower",
-    label: "Simple design. Pure atmosphere.",
-    image: "p-square-tower",
-    gallery: ["p-square-tower", "square-tower", "hero-stage", "latest-catalogue-1"],
-    description:
-      "A floor-standing square tower with a clean architectural silhouette. Available in Classic Black or Simple Silver for homes, lobbies and hospitality interiors.",
-    colors: ["Classic Black", "Simple Silver"],
-    features: [
+    "slug": "square-tower",
+    "name": "Square Tower",
+    "category": "tower",
+    "label": "Simple design. Pure atmosphere.",
+    "image": "p-square-tower",
+    "gallery": [
+      "p-square-tower",
+      "square-tower",
+      "latest-catalogue-1"
+    ],
+    "description": "A floor-standing square tower with a clean architectural silhouette in Classic Black for homes, lobbies and hospitality interiors.",
+    "colors": [
+      "Classic Black"
+    ],
+    "features": [
       "Floor-standing design",
       "800 ml oil capacity",
-      "Cold-air nebulizing technology",
+      "Cold-air nebulizing technology"
     ],
-    specs: {
+    "specs": {
       "Coverage area": "Up to 3,000 sq. ft.",
       "Oil capacity": "800 ml",
       "Power supply": "DC 12V / 5W",
       "Noise level": "Under 35 dB",
-      Material: "ABS",
-      Installation: "Floor standing",
-      Dimensions: "170 × 170 × 620 mm",
+      "Material": "ABS",
+      "Installation": "Floor standing",
+      "Dimensions": "170 × 170 × 620 mm"
     },
-    applications: [
+    "applications": [
       "Hotels & Resorts",
       "Offices & Workspaces",
       "Restaurants & Cafés",
       "Spas & Wellness",
-      "Homes & Apartments",
-    ],
+      "Homes & Apartments"
+    ]
   },
   {
-    slug: "hvac-power",
-    name: "HVAC Power",
-    category: "hvac",
-    label: "Pure scent. A considered environment.",
-    image: "p-hvac-power",
-    gallery: ["p-hvac-power", "hvac-power", "latest-catalogue-2"],
-    description:
-      "A fragrance diffuser for HVAC scenting, with a large oil reservoir and black or white finishes. Speak to our team about your ventilation system, installation and room layout.",
-    colors: ["Black", "White"],
-    features: [
+    "slug": "hvac-power",
+    "name": "HVAC Power",
+    "category": "hvac",
+    "label": "Pure scent. A considered environment.",
+    "image": "p-hvac-power",
+    "gallery": [
+      "p-hvac-power",
+      "new-hvac-power-2",
+      "latest-catalogue-2"
+    ],
+    "description": "A cold-air fragrance diffuser for larger interiors, designed for an HVAC scenting setup. Its 5,000 ml oil reservoir supports a practical refill routine for hotels, workplaces and shared commercial spaces. Our team can help match the installation and fragrance settings to your ventilation system, room layout and opening hours.",
+    "colors": [
+      "Black"
+    ],
+    "features": [
       "HVAC scenting solution",
       "5,000 ml oil capacity",
-      "Floor-standing / tabletop",
+      "Floor-standing / tabletop"
     ],
-    specs: {
+    "specs": {
       "Coverage area": "Up to 3,000 sq. ft.",
       "Oil capacity": "5,000 ml",
       "Power supply": "AC 110–240V / 25W",
-      Material: "Stainless steel & ABS",
-      Installation: "Floor standing / tabletop",
+      "Material": "Stainless steel & ABS",
+      "Installation": "Floor standing / tabletop"
     },
-    applications: [
+    "applications": [
       "Hotels & Resorts",
       "Offices & Workspaces",
       "Restaurants & Cafés",
       "Spas & Wellness",
-      "Homes & Apartments",
-    ],
+      "Homes & Apartments"
+    ]
   },
   {
-    slug: "cloudy",
-    name: "Cloudy",
-    category: "compact",
-    label: "A softer silhouette. A welcoming space.",
-    image: "p-cloudy",
-    gallery: ["p-cloudy", "cloudy", "hero-stage-mobile", "latest-catalogue-4"],
-    description:
-      "A white fragrance diffuser with a softly rounded body and textured front panel. Cloudy brings cold-air diffusion and intelligent scheduling into a clean, considered design.",
-    colors: ["White"],
-    features: [
-      "Cold-air diffusion",
-      "Intelligent scheduling",
-      "Textured white finish",
-    ],
-    specs: {
-      Colour: "White",
-      Technology: "Cold-air diffusion",
-      "Catalogue number": "1.863",
-      Scheduling: "Intelligent scheduling",
-    },
-    applications: [
-      "Homes & Apartments",
-      "Offices & Workspaces",
-      "Retail Stores",
-    ],
-  },
-  {
-    slug: "automatic-dispenser",
-    name: "Automatic Dispenser",
-    category: "dispenser",
-    technology: "Automatic aerosol spray",
-    label: "A fresh welcome, every time.",
-    image: "p-automatic-dispenser",
-    gallery: [
+    "slug": "automatic-dispenser",
+    "name": "Automatic Dispenser",
+    "category": "dispenser",
+    "technology": "Automatic aerosol spray",
+    "label": "A fresh welcome, every time.",
+    "image": "p-automatic-dispenser",
+    "gallery": [
       "p-automatic-dispenser",
-      "automatic-dispenser",
-      "latest-catalogue-5",
-      "latest-catalogue-3",
+      "new-automatic-air-dispenser-img-2",
+      "latest-catalogue-3"
     ],
-    description:
-      "The YK3180 automatic aerosol fragrance dispenser offers timed spray intervals and day, night or 24-hour operation. A refillable option for washrooms and small spaces.",
-    colors: ["White"],
-    features: [
+    "description": "The YK3180 automatic aerosol fragrance dispenser offers timed spray intervals and day, night or 24-hour operation. A refillable option for washrooms and small spaces.",
+    "colors": [
+      "White"
+    ],
+    "features": [
       "5 / 10 / 20 minute intervals",
       "Day / night / 24-hour modes",
-      "Powered by two AA batteries",
+      "Powered by two AA batteries"
     ],
-    specs: {
-      Model: "YK3180",
+    "specs": {
+      "Model": "YK3180",
       "Spray interval": "5 / 10 / 20 minutes",
       "Operating modes": "Day / night / 24H",
       "Battery type": "Two AA batteries",
       "Refill format": "300 ml perfume can",
-      Dimensions: "74 × 78 × 200 mm",
-      Weight: "301 g",
+      "Dimensions": "74 × 78 × 200 mm",
+      "Weight": "301 g"
     },
-    applications: [
+    "applications": [
       "Hotels & Resorts",
       "Offices & Workspaces",
       "Restaurants & Cafés",
       "Spas & Wellness",
-      "Homes & Apartments",
-    ],
-  },
+      "Homes & Apartments"
+    ]
+  }
 ];
 export type Fragrance = {
   slug: string;
@@ -311,196 +346,271 @@ export type Fragrance = {
 };
 export const fragrances: Fragrance[] = [
   {
-    slug: "jasmine",
-    name: "Jasmine",
-    family: "Floral",
-    mood: "Floral fragrance oil",
-    image: "p-oil-jasmine",
-    description:
-      "Jasmine floral fragrance oil, shown in the current Aroma Airs collection. Ask our team about availability, bottle sizes and diffuser compatibility.",
-    collection: "oil",
+    "slug": "agarwood",
+    "name": "Agarwood",
+    "family": "Woody",
+    "mood": "Deep & woody",
+    "image": "fragrance-agarwood-product-img",
+    "description": "Explore Agarwood in the Aroma Airs fragrance oil collection. Deep & woody in character, it offers a woody direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "rose",
-    name: "Rose",
-    family: "Floral",
-    mood: "Fragrance oil collection",
-    image: "p-oil-rose",
-    description:
-      "Rose fragrance oil from the current labelled collection. Contact our team for fragrance details and compatible diffuser models.",
-    collection: "oil",
+    "slug": "amber",
+    "name": "Amber",
+    "family": "Signature",
+    "mood": "Warm & inviting",
+    "image": "fragrance-amber-product-img",
+    "description": "Explore Amber in the Aroma Airs fragrance oil collection. Warm & inviting in character, it offers a signature direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "oud",
-    name: "Oud",
-    family: "Woody",
-    mood: "Luxury fragrance oil",
-    image: "p-oil-oud",
-    description:
-      "Oud luxury fragrance oil from Aroma Airs. Speak to our team about the fragrance, compatible diffusers and its availability.",
-    collection: "oil",
+    "slug": "amber-leather",
+    "name": "Amber Leather",
+    "family": "Signature",
+    "mood": "Warm & distinctive",
+    "image": "fragrance-amberleather-product-img",
+    "description": "Explore Amber Leather in the Aroma Airs fragrance oil collection. Warm & distinctive in character, it offers a signature direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "misty-m",
-    name: "Misty M.",
-    family: "Signature",
-    mood: "Luxury fragrance oil",
-    image: "p-oil-misty-m",
-    description:
-      "Misty M. appears in the current luxury fragrance oil collection. Ask our team about its scent profile, bottle sizes and availability.",
-    collection: "oil",
+    "slug": "camphor",
+    "name": "Camphor",
+    "family": "Fresh",
+    "mood": "Crisp & aromatic",
+    "image": "fragrance-camphor-product-img",
+    "description": "Explore Camphor in the Aroma Airs fragrance oil collection. Crisp & aromatic in character, it offers a fresh direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "buneez",
-    name: "Buneez",
-    family: "Signature",
-    mood: "Fragrance oil collection",
-    image: "p-oil-buneez",
-    description:
-      "Buneez fragrance oil, shown in the latest Aroma Airs bottle collection. Contact our team for fragrance notes and availability.",
-    collection: "oil",
+    "slug": "citrus-blend",
+    "name": "Citrus Blend",
+    "family": "Citrus",
+    "mood": "Bright & zesty",
+    "image": "fragrance-citrusblend-product-img",
+    "description": "Explore Citrus Blend in the Aroma Airs fragrance oil collection. Bright & zesty in character, it offers a citrus direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "misfit",
-    name: "Misfit",
-    family: "Signature",
-    mood: "Fragrance oil collection",
-    image: "p-oil-misfit",
-    description:
-      "Misfit fragrance oil from the current labelled collection. Ask our team about the scent profile and compatible diffuser models.",
-    collection: "oil",
+    "slug": "dark-forest",
+    "name": "Dark Forest",
+    "family": "Woody",
+    "mood": "Deep & atmospheric",
+    "image": "fragrance-darkforest-product-img",
+    "description": "Explore Dark Forest in the Aroma Airs fragrance oil collection. Deep & atmospheric in character, it offers a woody direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "aqua",
-    name: "Aqua",
-    family: "Signature",
-    mood: "Fragrance oil collection",
-    image: "p-oil-aqua",
-    description:
-      "Discover Aqua in the Aroma Airs fragrance oil collection. Speak to our team about availability, fragrance details and compatible diffusers.",
-    collection: "oil",
+    "slug": "fresh-earth",
+    "name": "Fresh Earth",
+    "family": "Woody",
+    "mood": "Earthy & grounded",
+    "image": "fragrance-freshearth-product-img",
+    "description": "Explore Fresh Earth in the Aroma Airs fragrance oil collection. Earthy & grounded in character, it offers a woody direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "gucci-flora",
-    name: "Gucci Flora",
-    family: "Floral",
-    mood: "Delicate & inviting",
-    image: "scent-flora",
-    description: "A delicate floral bouquet for an inviting atmosphere.",
-    collection: "oil",
+    "slug": "green-apple",
+    "name": "Green Apple",
+    "family": "Fruity",
+    "mood": "Crisp & fruity",
+    "image": "fragrance-greenapple-product-img",
+    "description": "Explore Green Apple in the Aroma Airs fragrance oil collection. Crisp & fruity in character, it offers a fruity direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "lavender",
-    name: "Lavender",
-    family: "Floral",
-    mood: "Calming & soothing",
-    image: "scent-lavender",
-    description:
-      "A soothing lavender profile that brings a softer character to your space.",
-    collection: "oil",
+    "slug": "green-tea",
+    "name": "Green Tea",
+    "family": "Fresh",
+    "mood": "Light & refreshing",
+    "image": "fragrance-greentea-product-img",
+    "description": "Explore Green Tea in the Aroma Airs fragrance oil collection. Light & refreshing in character, it offers a fresh direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "trishya",
-    name: "Trishya",
-    family: "Signature",
-    mood: "Exotic & enchanting",
-    image: "scent-trishya",
-    description:
-      "An exotic, enchanting fragrance with a distinctive personality.",
-    collection: "oil",
+    "slug": "lavender",
+    "name": "Lavender Calm",
+    "family": "Floral",
+    "mood": "Soft & floral",
+    "image": "fragrance-lavendercalm-product-img",
+    "description": "Explore Lavender Calm in the Aroma Airs fragrance oil collection. Soft & floral in character, it offers a floral direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "tea-rose",
-    name: "Tea Rose",
-    family: "Floral",
-    mood: "Romantic & timeless",
-    image: "scent-tea-rose",
-    description: "A romantic rose fragrance with a timeless floral character.",
-    collection: "oil",
+    "slug": "lemongrass",
+    "name": "Lemongrass",
+    "family": "Citrus",
+    "mood": "Fresh & zesty",
+    "image": "fragrance-lemongrass-product-img",
+    "description": "Explore Lemongrass in the Aroma Airs fragrance oil collection. Fresh & zesty in character, it offers a citrus direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "modern-oud",
-    name: "Modern Oud",
-    family: "Woody",
-    mood: "Rich & sophisticated",
-    image: "scent-modern-oud",
-    description: "Rich, woody and sophisticated, with a warm oud character.",
-    collection: "oil",
+    "slug": "mogra-jasmine",
+    "name": "Mogra Jasmine",
+    "family": "Floral",
+    "mood": "Rich & floral",
+    "image": "fragrance-mograjasmine-product-img",
+    "description": "Explore Mogra Jasmine in the Aroma Airs fragrance oil collection. Rich & floral in character, it offers a floral direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "lemongrass",
-    name: "Lemongrass",
-    family: "Citrus",
-    mood: "Zesty & uplifting",
-    image: "scent-lemongrass",
-    description:
-      "A fresh, zesty fragrance for a bright and uplifting atmosphere.",
-    collection: "oil",
+    "slug": "mountain-fresh",
+    "name": "Mountain Fresh",
+    "family": "Fresh",
+    "mood": "Cool & refreshing",
+    "image": "fragrance-mountfresh-product-img",
+    "description": "Explore Mountain Fresh in the Aroma Airs fragrance oil collection. Cool & refreshing in character, it offers a fresh direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "oud-arabia",
-    name: "Oud Arabia",
-    family: "Woody",
-    mood: "Deep & warm",
-    image: "scent-oud-arabia",
-    description:
-      "A deep, warm oud fragrance for a rich and welcoming ambience.",
-    collection: "oil",
+    "slug": "neroli",
+    "name": "Neroli",
+    "family": "Floral",
+    "mood": "Bright & floral",
+    "image": "fragrance-neroli-product-img",
+    "description": "Explore Neroli in the Aroma Airs fragrance oil collection. Bright & floral in character, it offers a floral direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "shangria-white",
-    name: "Shangria White",
-    family: "Fresh",
-    mood: "Soft & elegant",
-    image: "scent-shangria",
-    description:
-      "Soft, clean and elegant. A subtle fragrance for contemporary spaces.",
-    collection: "oil",
+    "slug": "nilgiri",
+    "name": "Nilgiri",
+    "family": "Fresh",
+    "mood": "Fresh & aromatic",
+    "image": "fragrance-nilgiri-product-img",
+    "description": "Explore Nilgiri in the Aroma Airs fragrance oil collection. Fresh & aromatic in character, it offers a fresh direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "ocean-breeze",
-    name: "Ocean Breeze",
-    family: "Fresh",
-    mood: "Fresh & revitalizing",
-    image: "scent-ocean",
-    description: "A cool, refreshing fragrance with an invigorating character.",
-    collection: "oil",
+    "slug": "ocean-blue",
+    "name": "Ocean Blue",
+    "family": "Fresh",
+    "mood": "Cool & clean",
+    "image": "fragrance-oceanblue-product-img",
+    "description": "Explore Ocean Blue in the Aroma Airs fragrance oil collection. Cool & clean in character, it offers a fresh direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "citrus-fresh",
-    name: "Citrus Fresh",
-    family: "Citrus",
-    mood: "Uplifting & energizing",
-    image: "scent-citrus",
-    description:
-      "A bright citrus scent for a fresh, welcoming atmosphere. Contact us for availability in the signature range.",
-    collection: "signature",
+    "slug": "ocean-breeze",
+    "name": "Ocean Breeze",
+    "family": "Fresh",
+    "mood": "Fresh & airy",
+    "image": "fragrance-oceanbreeze-product-img",
+    "description": "Explore Ocean Breeze in the Aroma Airs fragrance oil collection. Fresh & airy in character, it offers a fresh direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "white-blossom",
-    name: "White Blossom",
-    family: "Floral",
-    mood: "Elegant & romantic",
-    image: "scent-white-blossom",
-    description:
-      "A gentle floral character that lends elegance to your surroundings. Contact us for signature range availability.",
-    collection: "signature",
+    "slug": "orange",
+    "name": "Orange",
+    "family": "Citrus",
+    "mood": "Bright & cheerful",
+    "image": "fragrance-orange-product-img",
+    "description": "Explore Orange in the Aroma Airs fragrance oil collection. Bright & cheerful in character, it offers a citrus direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
   {
-    slug: "sandalwood",
-    name: "Sandalwood",
-    family: "Woody",
-    mood: "Warm & relaxing",
-    image: "scent-sandalwood",
-    description:
-      "A warm, woody fragrance for an inviting space. Contact us for signature range availability.",
-    collection: "signature",
+    "slug": "oud-arabia",
+    "name": "Arabian Oud",
+    "family": "Woody",
+    "mood": "Deep & warm",
+    "image": "fragrance-oudarabian-product-img",
+    "description": "Explore Arabian Oud in the Aroma Airs fragrance oil collection. Deep & warm in character, it offers a woody direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
   },
+  {
+    "slug": "pineapple",
+    "name": "Pineapple",
+    "family": "Fruity",
+    "mood": "Tropical & fruity",
+    "image": "fragrance-pineapple-product-img",
+    "description": "Explore Pineapple in the Aroma Airs fragrance oil collection. Tropical & fruity in character, it offers a fruity direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
+  },
+  {
+    "slug": "rose-imperial",
+    "name": "Rose Imperial",
+    "family": "Floral",
+    "mood": "Elegant & floral",
+    "image": "fragrance-roseimperial-product-img",
+    "description": "Explore Rose Imperial in the Aroma Airs fragrance oil collection. Elegant & floral in character, it offers a floral direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
+  },
+  {
+    "slug": "sandalwood",
+    "name": "Sandalwood",
+    "family": "Woody",
+    "mood": "Warm & woody",
+    "image": "fragrance-sandalwood-product-img",
+    "description": "Explore Sandalwood in the Aroma Airs fragrance oil collection. Warm & woody in character, it offers a woody direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
+  },
+  {
+    "slug": "sangariya-white",
+    "name": "Sangariya White",
+    "family": "Floral",
+    "mood": "Soft & inviting",
+    "image": "fragrance-sangariyawhite-product-img",
+    "description": "Explore Sangariya White in the Aroma Airs fragrance oil collection. Soft & inviting in character, it offers a floral direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
+  },
+  {
+    "slug": "strawberry",
+    "name": "Strawberry",
+    "family": "Fruity",
+    "mood": "Sweet & fruity",
+    "image": "fragrance-strawberry-product-img",
+    "description": "Explore Strawberry in the Aroma Airs fragrance oil collection. Sweet & fruity in character, it offers a fruity direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
+  },
+  {
+    "slug": "vanilla",
+    "name": "Vanilla",
+    "family": "Signature",
+    "mood": "Soft & warm",
+    "image": "fragrance-vanilla-product-img",
+    "description": "Explore Vanilla in the Aroma Airs fragrance oil collection. Soft & warm in character, it offers a signature direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
+  },
+  {
+    "slug": "vanilla-amber",
+    "name": "Vanilla Amber",
+    "family": "Signature",
+    "mood": "Warm & enveloping",
+    "image": "fragrance-vanillaamber-product-img",
+    "description": "Explore Vanilla Amber in the Aroma Airs fragrance oil collection. Warm & enveloping in character, it offers a signature direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
+  },
+  {
+    "slug": "warm-musk",
+    "name": "Warm Musk",
+    "family": "Signature",
+    "mood": "Soft & comforting",
+    "image": "fragrance-warmmusk-product-img",
+    "description": "Explore Warm Musk in the Aroma Airs fragrance oil collection. Soft & comforting in character, it offers a signature direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
+  },
+  {
+    "slug": "white-oud",
+    "name": "White Oud",
+    "family": "Woody",
+    "mood": "Refined & woody",
+    "image": "fragrance-white-oud-product-img",
+    "description": "Explore White Oud in the Aroma Airs fragrance oil collection. Refined & woody in character, it offers a woody direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
+  },
+  {
+    "slug": "white-tea",
+    "name": "White Tea",
+    "family": "Fresh",
+    "mood": "Delicate & fresh",
+    "image": "fragrance-whitetea-product-img",
+    "description": "Explore White Tea in the Aroma Airs fragrance oil collection. Delicate & fresh in character, it offers a fresh direction for your space. Ask our team about bottle sizes, availability and compatible cold-air diffusers.",
+    "collection": "oil"
+  }
 ];
 export const signatureFragrances = [
   "lavender",
-  "citrus-fresh",
-  "white-blossom",
+  "citrus-blend",
+  "white-tea",
   "sandalwood",
   "ocean-breeze",
 ].map((slug) => fragrances.find((f) => f.slug === slug)!);
@@ -560,7 +670,7 @@ export const applications = [
   {
     slug: "hotels-resorts",
     name: "Hotels & Resorts",
-    image: "hotel-lifestyle",
+    image: "gallery-gallery-image-9",
     icon: "hotel",
     description:
       "Set a welcoming tone from the lobby to the lounge. Match your fragrance to the atmosphere you want guests to remember.",
@@ -569,7 +679,7 @@ export const applications = [
   {
     slug: "offices-workspaces",
     name: "Offices & Workspaces",
-    image: "office",
+    image: "gallery-gallery-image-1",
     icon: "building",
     description:
       "Add a fresh, considered finishing touch to reception areas, meeting rooms and shared workspaces.",
@@ -578,7 +688,7 @@ export const applications = [
   {
     slug: "retail-stores",
     name: "Retail Stores",
-    image: "retail",
+    image: "gallery-gallery-image-17",
     icon: "store",
     description:
       "Create a distinctive atmosphere that complements your store, your interiors and your brand.",
@@ -587,7 +697,7 @@ export const applications = [
   {
     slug: "hospitals-clinics",
     name: "Hospitals & Clinics",
-    image: "hospital",
+    image: "gallery-gallery-image-2",
     icon: "hospital",
     description:
       "Explore subtle scenting for suitable non-clinical reception and waiting spaces. Consult your facility team about fragrance sensitivity and local policies.",
@@ -596,7 +706,7 @@ export const applications = [
   {
     slug: "restaurants-cafes",
     name: "Restaurants & Cafés",
-    image: "cafe",
+    image: "gallery-gallery-image-6",
     icon: "coffee",
     description:
       "Give entrance areas and lounges a welcoming character. Choose placement and intensity with your dining experience in mind.",
@@ -605,7 +715,7 @@ export const applications = [
   {
     slug: "homes-apartments",
     name: "Homes & Apartments",
-    image: "home-lifestyle",
+    image: "gallery-gallery-image-12",
     icon: "home",
     description:
       "Make everyday spaces feel more personal. Choose a fragrance and a finish that complement the way you live.",
@@ -614,7 +724,7 @@ export const applications = [
   {
     slug: "spas-wellness",
     name: "Spas & Wellness",
-    image: "hero-lobby",
+    image: "gallery-gallery-image-15",
     icon: "leaf",
     description:
       "Introduce a gentle fragrance into reception and relaxation areas to complement a thoughtfully designed space.",

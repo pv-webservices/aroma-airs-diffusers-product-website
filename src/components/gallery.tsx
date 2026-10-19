@@ -2,30 +2,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
-const photos = [
-  { name: "hero-stage", title: "Tower Series, Square Tower & Cloudy", category: "Lifestyle" },
-  { name: "p-square-tower", title: "Square Tower", category: "Products" },
-  { name: "p-hvac-power", title: "HVAC Power", category: "Products" },
-  { name: "p-cloudy", title: "Cloudy · White finish", category: "Products" },
-  { name: "p-automatic-dispenser", title: "Automatic Dispenser · YK3180", category: "Products" },
-  { name: "latest-oils", title: "The luxury fragrance oil collection", category: "Fragrance Oils" },
-  { name: "essential-oils", title: "Buneez, Lavender, Misfit & Aqua", category: "Fragrance Oils" },
-  { name: "hotel-lifestyle", title: "Tower Series · Hotel lobby", category: "Lifestyle" },
-  { name: "tower-pair", title: "Classic Black & Simple Silver", category: "Products" },
-  { name: "p-oil-jasmine", title: "Jasmine · Luxury fragrance oil", category: "Fragrance Oils" },
-  { name: "wall-lifestyle", title: "Wall-mounted scenting", category: "Lifestyle" },
-  { name: "s-compact-white", title: "Compact White", category: "Products" },
-  { name: "table-lifestyle", title: "A considered finishing touch", category: "Lifestyle" },
-  { name: "s-wall-pro-black", title: "Wall Pro Black", category: "Products" },
-  { name: "installation", title: "Square Tower · On location", category: "Installations" },
-  { name: "p-oil-rose", title: "Rose · Luxury fragrance oil", category: "Fragrance Oils" },
-  { name: "home-lifestyle", title: "A welcoming entrance", category: "Lifestyle" },
-  { name: "wall-interior-white", title: "Inside Wall Pro White", category: "Products" },
-  { name: "hero-stage-mobile", title: "A sunlit atmosphere", category: "Lifestyle" },
-  { name: "p-oil-aqua", title: "Aqua · Fragrance oil", category: "Fragrance Oils" },
-  { name: "tower-controls", title: "Tower Series · Control methods", category: "Products" },
-  { name: "s-compact", title: "Compact · Black", category: "Products" },
-];
+import { galleryPhotos as photos } from "@/lib/gallery-data";
 export default function Gallery() {
   const [filter, setFilter] = useState("All");
   const [selected, setSelected] = useState<number | null>(null);
@@ -51,13 +28,7 @@ export default function Gallery() {
   return (
     <>
       <div className="filter-bar" role="group" aria-label="Filter gallery">
-        {[
-          "All",
-          "Products",
-          "Lifestyle",
-          "Installations",
-          "Fragrance Oils",
-        ].map((f) => (
+        {["All", ...new Set(photos.map((p) => p.category))].map((f) => (
           <button
             key={f}
             className={f === filter ? "selected" : ""}

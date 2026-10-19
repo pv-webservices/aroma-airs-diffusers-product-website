@@ -10,7 +10,6 @@ import {
   FragranceCard,
   ProductCard,
   DetailLink,
-  isStudioImage,
 } from "@/components/ui";
 import ProductGallery from "@/components/product-gallery";
 
@@ -24,15 +23,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return f ? pageMeta(f.name, f.description, `/fragrances/${slug}`, `/images/${f.image}.webp`) : {};
 }
 
-const diffuserPairings = ["cloudy", "square-tower", "compact"];
+const diffuserPairings = ["compact-white", "square-tower", "compact"];
 
 export default async function FragrancePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const f = fragrances.find((item) => item.slug === slug);
   if (!f) notFound();
   const isOil = f.collection === "oil";
-  // Only labelled bottles get the collection shots; scent photos stand alone.
-  const gallery = isStudioImage(f.image) ? [f.image, "latest-oils", "essential-oils"] : [f.image];
+  const gallery = [f.image];
   const sameFamily = fragrances.filter((o) => o.slug !== f.slug && o.family === f.family);
   const more = [...sameFamily, ...fragrances.filter((o) => o.slug !== f.slug && o.family !== f.family)].slice(0, 5);
 

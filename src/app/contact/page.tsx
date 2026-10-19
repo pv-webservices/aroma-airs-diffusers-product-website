@@ -22,7 +22,7 @@ export default function ContactPage() {
         }
         description="Product questions, fragrance advice or a scenting solution for your business — we’d love to hear about your space."
         breadcrumb={[{ label: "Contact Us" }]}
-        image="hero-lobby"
+        image="gallery-gallery-image-15"
       />
       <section className="section contact-section">
         <div className="container contact-layout">

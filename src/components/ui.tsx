@@ -443,7 +443,7 @@ export function PageHero({
   title,
   description,
   breadcrumb,
-  image = "hero-stage",
+  image = "gallery-gallery-image-9",
   studio = false,
 }: {
   label: string;
@@ -494,7 +494,7 @@ export function CTA({
   return (
     <section className="cta" data-scroll>
       <div className="cta-media">
-        <Image src="/images/hero-lobby.webp" alt="" fill sizes="100vw" />
+        <Image src="/images/gallery-gallery-image-15.webp" alt="" fill sizes="100vw" />
       </div>
       <div className="container cta-inner reveal">
         <div>

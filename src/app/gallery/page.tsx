@@ -3,7 +3,7 @@ import { PageHero, CTA } from "@/components/ui";
 import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta(
   "Gallery",
-  "See Aroma Airs diffuser designs, product details, fragrance oils and lifestyle imagery. Explore our gallery of scenting inspiration.",
+  "Explore the Aroma Airs gallery of supplied location photographs, from workplace receptions to hospitality, retail and wellness interiors.",
   "/gallery",
 );
 export default function GalleryPage() {
@@ -20,7 +20,7 @@ export default function GalleryPage() {
         }
         description="Explore our collection in detail, and discover the spaces that inspire us."
         breadcrumb={[{ label: "Gallery" }]}
-        image="hotel-lifestyle"
+        image="gallery-gallery-image-9"
       />
       <section className="section">
         <div className="container">

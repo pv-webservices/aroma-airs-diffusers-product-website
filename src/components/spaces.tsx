@@ -11,7 +11,7 @@ export default function Spaces() {
   return (
     <div className="spaces" role="list">
       {applications.map((a, i) => (
-        <article
+        <div
           role="listitem"
           key={a.slug}
           className={`space ${i === active ? "is-open" : ""}`}
@@ -37,7 +37,7 @@ export default function Spaces() {
               </a>
             </div>
           </div>
-        </article>
+        </div>
       ))}
     </div>
   );

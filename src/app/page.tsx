@@ -17,6 +17,8 @@ import Hero from "@/components/hero";
 import Showcase from "@/components/showcase";
 import StickyStory from "@/components/sticky-story";
 import Spaces from "@/components/spaces";
+import Clients from "@/components/clients";
+import { galleryPhotos } from "@/lib/gallery-data";
 
 export const metadata = {
   ...pageMeta(
@@ -40,39 +42,38 @@ const ticker = [
 
 const collectionTiles: { slug: string; image: string; count: string; wide?: boolean }[] = [
   { slug: "tower-diffusers", image: "p-square-tower", count: "2 models", wide: true },
-  { slug: "compact-diffusers", image: "p-cloudy", count: "3 models" },
-  { slug: "wall-mounted-diffusers", image: "s-wall-pro-black", count: "2 models" },
+  { slug: "compact-diffusers", image: "new-compact-white-img-1", count: "2 models" },
+  { slug: "wall-mounted-diffusers", image: "new-wall-pro-black-img-1", count: "2 models" },
   { slug: "hvac-diffusers", image: "p-hvac-power", count: "Up to 3,000 sq. ft." },
   { slug: "automatic-dispensers", image: "p-automatic-dispenser", count: "YK3180" },
-  { slug: "fragrance-oils", image: "p-oil-jasmine", count: `${oilFragrances.length} oils`, wide: true },
+  { slug: "fragrance-oils", image: "fragrance-mograjasmine-product-img", count: `${oilFragrances.length} oils`, wide: true },
 ];
 
 const story = [
   {
-    image: "mist-band",
-    alt: "A compact diffuser releasing a fine fragrance mist",
+    image: "gallery-gallery-image-16",
+    alt: "Aroma Airs diffuser placed beside a window",
     eyebrow: "01 · Cold-air diffusion",
     title: "A fine, dry mist. Not heat, not water.",
     text: "Nebulizing technology breaks fragrance oil into a micro-fine mist, so the scent stays true and spreads evenly through your space.",
   },
   {
-    image: "tower-controls",
+    image: "new-tower-series-black-2",
     alt: "Tower Series control methods: touch and Bluetooth",
     eyebrow: "02 · Considered controls",
     title: "Set it once. Enjoy it every day.",
     text: "Timers, intensity and working hours on supported models let you shape fragrance around opening times and footfall.",
   },
   {
-    image: "p-oil-oud",
-    alt: "Aroma Airs Oud luxury fragrance oil",
+    image: "fragrance-oudarabian-product-img",
+    alt: "Aroma Airs Arabian Oud fragrance oil",
     eyebrow: "03 · Signature fragrance",
     title: "A scent people remember you by.",
     text: "Choose from florals, fresh notes and warm woods — or let our team help you find a signature fragrance for your brand.",
-    studio: true,
   },
   {
-    image: "hotel-lifestyle",
-    alt: "Tower diffuser in a hotel lobby",
+    image: "gallery-gallery-image-9",
+    alt: "A furnished hospitality reception and lounge",
     eyebrow: "04 · Made for your space",
     title: "From reception desks to grand lobbies.",
     text: "Compact, wall-mounted, floor-standing and HVAC models cover everything from a cabin to a 3,000 sq. ft. floor.",
@@ -93,18 +94,18 @@ const steps = [
   {
     icon: Flower2,
     title: "Select your signature fragrance",
-    text: "Explore oils from jasmine and rose to oud and aqua, and settle on the scent that feels like you.",
+    text: "Explore oils from Mogra Jasmine and Rose Imperial to Arabian Oud and Ocean Breeze, and settle on the scent that feels like you.",
   },
 ];
 
-const galleryRowA = ["hero-stage", "p-square-tower", "hotel-lifestyle", "p-cloudy", "tower-pair", "wall-lifestyle", "p-hvac-power"];
-const galleryRowB = ["latest-oils", "p-oil-rose", "table-lifestyle", "p-automatic-dispenser", "essential-oils", "p-oil-aqua", "home-lifestyle"];
+const galleryRowA = galleryPhotos.slice(0, 10).map((photo) => photo.name);
+const galleryRowB = galleryPhotos.slice(10).map((photo) => photo.name);
 
 function GalleryRow({ names, reverse }: { names: string[]; reverse?: boolean }) {
   return (
     <Marquee reverse={reverse} speed={55} className="gallery-marquee">
       {names.map((name) => (
-        <a href="/gallery" key={name} className={`g-tile ${/^(p-|s-)/.test(name) ? "is-studio" : ""}`} tabIndex={-1}>
+        <a href="/gallery" key={name} className={`g-tile ${/^(p-|s-)/.test(name) ? "is-studio" : ""}`} aria-label="View the Aroma Airs gallery">
           <Image src={`/images/${name}.webp`} alt="" fill sizes="(max-width: 600px) 60vw, 22vw" />
         </a>
       ))}
@@ -127,6 +128,8 @@ export default function Home() {
           ))}
         </Marquee>
       </div>
+
+      <Clients />
 
       <Showcase
         id="collection"
@@ -244,12 +247,12 @@ export default function Home() {
         <div className="container">
           <a href="/products/fragrance-oils" className="oil-banner reveal" data-scroll>
             <div className="oil-banner-media">
-              <Image src="/images/latest-oils.webp" alt="Aroma Airs luxury fragrance oils: Rose, Oud, Jasmine, Misty M., Lavender and Lemongrass" fill sizes="(max-width: 860px) 92vw, 55vw" />
+              <Image src="/images/fragrance-mograjasmine-product-img.webp" alt="Mogra Jasmine fragrance oil from the supplied Aroma Airs collection" fill sizes="(max-width: 860px) 92vw, 55vw" />
             </div>
             <div className="oil-banner-text">
               <Eyebrow light>THE LUXURY OIL COLLECTION</Eyebrow>
-              <h3>Jasmine, Rose, Oud &amp; more.</h3>
-              <p>Discover the labelled luxury oils, plus the new Buneez, Misfit and Aqua.</p>
+              <h3>Mogra Jasmine, Rose Imperial, Arabian Oud &amp; more.</h3>
+              <p>Explore all {fragrances.length} fragrance oils, from fresh tea and citrus to warm woods and soft florals.</p>
               <span className="detail-link">
                 Discover fragrance oils <ArrowUpRight size={15} aria-hidden="true" />
               </span>
@@ -280,7 +283,7 @@ export default function Home() {
 
       <section className="stats" data-scroll>
         <div className="stats-media" aria-hidden="true">
-          <Image src="/images/mist-band.webp" alt="" fill sizes="100vw" />
+          <Image src="/images/gallery-gallery-image-16.webp" alt="" fill sizes="100vw" />
         </div>
         <div className="container stats-grid">
           {[
@@ -331,7 +334,7 @@ export default function Home() {
       <section className="section about-strip">
         <div className="container about-strip-grid">
           <div className="about-strip-media" data-scroll>
-            <Image src="/images/table-lifestyle.webp" alt="Aroma Airs diffuser styled in a furnished interior" fill sizes="(max-width: 860px) 92vw, 45vw" />
+            <Image src="/images/gallery-gallery-image-16.webp" alt="Aroma Airs diffuser styled in a furnished interior" fill sizes="(max-width: 860px) 92vw, 45vw" />
           </div>
           <div className="about-strip-copy">
             <SectionHeading

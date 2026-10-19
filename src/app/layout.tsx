@@ -72,7 +72,7 @@ export default function RootLayout({
     telephone: business.internationalPhone,
     email: business.email,
     ...(siteUrl
-      ? { url: siteUrl, image: siteUrl + "/images/hero-stage.webp" }
+      ? { url: siteUrl, image: siteUrl + "/images/gallery-gallery-image-9.webp" }
       : {}),
     address: {
       "@type": "PostalAddress",

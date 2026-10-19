@@ -20,7 +20,7 @@ export default function FragrancesPage() {
         }
         description="Delicate florals. Fresh citrus. Warm woods. A collection of fragrances to set the mood and make a space your own."
         breadcrumb={[{ label: "Fragrances" }]}
-        image="scent-white-blossom"
+        image="fragrance-neroli-product-img"
       />
       <section className="section">
         <div className="container">

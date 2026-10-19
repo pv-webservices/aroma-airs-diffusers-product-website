@@ -1,0 +1,22 @@
+// Captions describe the supplied photographs without assigning unverified venues.
+export const galleryPhotos = [
+  { title: "A welcoming workplace reception", category: "Workspaces" },
+  { title: "A bright healthcare corridor", category: "Healthcare" },
+  { title: "Colourful spaces to gather", category: "Hospitality" },
+  { title: "Tower scenting beside a mall directory", category: "Retail" },
+  { title: "A discreet diffuser beneath a console", category: "Hospitality" },
+  { title: "A considered dining atmosphere", category: "Hospitality" },
+  { title: "A light-filled entrance lobby", category: "Hospitality" },
+  { title: "A comfortable shared lounge", category: "Hospitality" },
+  { title: "A warm welcome at reception", category: "Hospitality" },
+  { title: "A lounge made for conversation", category: "Hospitality" },
+  { title: "Scenting for a shared shopping space", category: "Retail" },
+  { title: "A quiet corner with a finishing touch", category: "Hospitality" },
+  { title: "Fragrance at a modern reception", category: "Workspaces" },
+  { title: "A fresh atmosphere for a fitness space", category: "Wellness" },
+  { title: "A spacious hospitality entrance", category: "Hospitality" },
+  { title: "A diffuser styled beside the window", category: "Hospitality" },
+  { title: "A considered retail interior", category: "Retail" },
+  { title: "Soft lighting and a welcoming interior", category: "Hospitality" },
+  { title: "Tower scenting at the entrance", category: "Retail" },
+].map((photo, i) => ({ ...photo, name: `gallery-gallery-image-${i + 1}` }));

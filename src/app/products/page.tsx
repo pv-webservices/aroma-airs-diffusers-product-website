@@ -20,7 +20,7 @@ export default function ProductsPage() {
         }
         description="Considered design, a choice of finishes and a fragrance that feels like you. Explore our diffuser and oil collection."
         breadcrumb={[{ label: "Products" }]}
-        image="hero-stage"
+        image="gallery-gallery-image-9"
       />
       <section className="section">
         <div className="container">

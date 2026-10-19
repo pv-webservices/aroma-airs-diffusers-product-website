@@ -1,6 +1,22 @@
 # Aroma airs
 
-A responsive Next.js business catalogue based on the approved ivory-and-orange homepage design. The site contains nine diffuser/dispenser detail pages, seven collection pages, nineteen fragrance pages, applications, a gallery, contact information, policy pages and a custom 404. Product discovery leads to WhatsApp, phone or an enquiry; there are no customer accounts, prices or purchase flows.
+A responsive Next.js business catalogue based on the approved ivory-and-orange homepage design. The site contains eight diffuser/dispenser detail pages, seven collection pages, twenty-nine fragrance pages, applications, a gallery, contact information, policy pages and a custom 404. Product discovery leads to WhatsApp, phone or an enquiry; there are no customer accounts, prices or purchase flows.
+
+## Client refresh — 19 October 2026
+
+- Removed Cloudy from the shared catalogue and public detail route. Compact is now named Compact Black; its existing `/products/compact` URL is retained, with only its first image.
+- Added a homepage client section using all ten supplied logos. Gallery and lifestyle sections now use the nineteen supplied location photos. Captions describe visible settings without guessing venue names.
+- Replaced the fragrance catalogue with twenty-nine entries matching the supplied labelled images. Existing matching fragrance URLs (Lavender, Lemongrass, Arabian Oud, Ocean Breeze and Sandalwood) remain; old fragrances without a corresponding supplied image are no longer listed. New entries have detail pages, filters, related products and enquiry links.
+- Compact White uses images 1–3; Wall Pro Black uses 1–5; Wall Pro White uses its own white images 1–8, as confirmed by the client. Single-model finish panels are removed except the existing Compact Black finish display.
+- Tower Series retains its original first two views and adds all nine supplied finish images. Black and Silver controls show corresponding galleries, reset to the first view on switching and include the selected finish in the WhatsApp draft.
+- Automatic Dispenser retains the first and final catalogue image, with the new internal view second. HVAC Power retains its first and third images, with `hvac-power-2` second. Square Tower loses its third image and finish panel, as confirmed by the client.
+- `node scripts/prepare-client-refresh.mjs` prepares 85 local WebP assets. Originals are preserved. Logo preprocessing trims white margins without redrawing marks. Provenance: `output/refresh/asset-manifest.json`.
+- The prepared WebP files are served directly (`images.unoptimized`) to avoid repeating image processing at runtime. In the local production browser, optimizer requests stalled while the same static assets returned 200; dimensions and layout space remain reserved by the Image components.
+- All three supplied Alibaba URLs returned CAPTCHA pages in a real browser on 19 October. Descriptions were expanded using the supplied photos and existing confirmed specifications; no unseen supplier claims were added. Model-specific technical values that conflict across sheets remain omitted.
+- Local verification and screenshots are recorded in `output/refresh/`; route audit: `output/playwright/route-audit.json`. No deployment or live enquiry delivery is implied.
+- Final local QA: production build and TypeScript passed; 59 route checks and 104 internal destinations passed; 165 browser assertions, including 25 responsive checks and six axe audits, passed with zero browser errors or accessibility violations. See `output/refresh/QA.md`.
+
+The historical asset notes below describe earlier builds and retained source material; this refresh defines the current catalogue and displayed media.
 
 ## Run locally
 
@@ -35,7 +51,7 @@ npm run start
 
 `src/components/motion.tsx` drives scroll reveals, count-ups, scroll-linked zoom/move (`--progress`) and pointer tilt with a light spot on cards (mouse hover and touch press). The homepage combines an auto-playing hero product spotlight (pause/next controls), a pinned horizontal product showcase (`showcase.tsx`), a sticky image story (`sticky-story.tsx`), CSS marquee slideshows for oils and the gallery, an expanding spaces accordion (`spaces.tsx`) and stacking sticky step cards. Buttons use a colour-flow gradient (animated `@property` colours, no shine sweep). Product pages have hover/tap zoom. Everything works on touch and respects `prefers-reduced-motion`. All styles live in `src/app/globals.css`.
 
-## Latest catalogue reconciliation
+## Previous catalogue reconciliation (historical)
 
 - `aroma product image-1.jpeg`: Square Tower; a distinct floor-standing product, separate from cylindrical Tower Series.
 - `aroma product image-2.jpeg`: HVAC Power. Its sheet supports 5,000 ml capacity, 25W power and up to 3,000 sq. ft. coverage. Universal HVAC compatibility and purification claims are not repeated as blanket guarantees.

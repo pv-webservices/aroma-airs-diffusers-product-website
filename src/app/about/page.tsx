@@ -27,7 +27,7 @@ export default function AboutPage() {
         }
         description="We believe fragrance is a finishing touch that makes a space feel complete. Meet a more considered approach to scenting."
         breadcrumb={[{ label: "About Us" }]}
-        image="home-lifestyle"
+        image="gallery-gallery-image-12"
       />
       <section className="section">
         <div className="container about-layout">
@@ -52,7 +52,7 @@ export default function AboutPage() {
             <Button href="/contact">Talk to Our Team</Button>
           </div>
           <Photo
-            name="table-lifestyle"
+            name="gallery-gallery-image-16"
             alt="Aroma Airs diffuser styled on a wooden side table"
             className="about-page-photo"
           />

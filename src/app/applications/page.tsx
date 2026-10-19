@@ -26,7 +26,7 @@ export default function ApplicationsPage() {
         }
         description="Wherever people gather, a thoughtfully chosen fragrance adds character. Find the scenting approach that suits your environment."
         breadcrumb={[{ label: "Applications" }]}
-        image="cafe"
+        image="gallery-gallery-image-6"
       />
       <section className="section">
         <div className="container application-sections">

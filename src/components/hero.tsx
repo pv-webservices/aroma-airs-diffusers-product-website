@@ -6,7 +6,7 @@ import { fragrances, products, whatsapp } from "@/lib/data";
 import { Button, WhatsAppIcon, categoryLabel } from "./ui";
 
 const SLIDE_MS = 4200;
-const featured = ["square-tower", "cloudy", "hvac-power", "automatic-dispenser", "tower-series", "compact-white"]
+const featured = ["square-tower", "compact", "hvac-power", "automatic-dispenser", "tower-series", "compact-white"]
   .map((slug) => products.find((p) => p.slug === slug))
   .filter((p): p is (typeof products)[number] => Boolean(p));
 
@@ -32,8 +32,8 @@ export default function Hero() {
     <section className="hero" data-scroll>
       <div className="hero-media" aria-hidden="true">
         <picture>
-          <source media="(max-width: 700px)" srcSet="/images/hero-stage-mobile.webp" />
-          <img src="/images/hero-stage.webp" alt="" width={1376} height={768} fetchPriority="high" />
+          <source media="(max-width: 700px)" srcSet="/images/gallery-gallery-image-7.webp" />
+          <img src="/images/gallery-gallery-image-9.webp" alt="" width={1376} height={768} fetchPriority="high" />
         </picture>
       </div>
       <div className="hero-veil" aria-hidden="true" />

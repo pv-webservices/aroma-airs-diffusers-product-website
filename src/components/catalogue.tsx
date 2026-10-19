@@ -63,7 +63,7 @@ export function ProductCatalogue({
 }
 export function FragranceCatalogue() {
   const [filter, setFilter] = useState("All");
-  const filters = ["All", "Floral", "Fresh", "Woody", "Citrus", "Signature"];
+  const filters = ["All", "Floral", "Fresh", "Woody", "Citrus", "Fruity", "Signature"];
   const list = fragrances.filter(
     (f) => filter === "All" || f.family === filter,
   );

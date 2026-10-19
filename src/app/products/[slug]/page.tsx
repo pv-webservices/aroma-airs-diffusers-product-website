@@ -10,9 +10,6 @@ import {
 import { pageMeta } from "@/lib/seo";
 import {
   Breadcrumb,
-  Eyebrow,
-  ContactButtons,
-  CheckList,
   ProductCard,
   SectionHeading,
   FragranceCard,
@@ -20,21 +17,19 @@ import {
   CTA,
   PageHero,
   TechnologyGrid,
-  Swatches,
   DetailLink,
-  categoryLabel,
 } from "@/components/ui";
 import { ProductCatalogue } from "@/components/catalogue";
-import ProductGallery from "@/components/product-gallery";
+import ProductOverview from "@/components/product-overview";
 
 const categoryImages: Record<string, string> = {
-  all: "hero-stage",
-  compact: "p-cloudy",
-  wall: "wall-lifestyle",
+  all: "gallery-gallery-image-9",
+  compact: "new-compact-white-img-1",
+  wall: "new-wall-pro-black-img-1",
   tower: "p-square-tower",
   hvac: "p-hvac-power",
   dispenser: "p-automatic-dispenser",
-  oil: "latest-oils",
+  oil: "fragrance-mograjasmine-product-img",
 };
 
 export function generateStaticParams() {
@@ -51,7 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 function CategoryPage({ category }: { category: (typeof categories)[number] }) {
-  const image = categoryImages[category.key] ?? "hero-stage";
+  const image = categoryImages[category.key] ?? "gallery-gallery-image-9";
   return (
     <>
       <PageHero
@@ -100,7 +95,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const p = products.find((item) => item.slug === slug);
   if (!p) notFound();
   const isDispenser = p.category === "dispenser";
-  const noun = isDispenser ? "fragrance dispenser" : "fragrance diffuser";
   const schema = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -121,24 +115,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div className="pd-glow" aria-hidden="true" />
         <div className="container">
           <Breadcrumb items={[{ label: "Products", href: "/products" }, { label: p.name }]} />
-          <div className="pd-layout">
-            <ProductGallery images={p.gallery} name={p.name} />
-            <div className="pd-info">
-              <Eyebrow>
-                {categoryLabel(p.category)} · {isDispenser ? "Dispenser" : "Diffuser"}
-              </Eyebrow>
-              <h1>{p.name}</h1>
-              <p className="pd-tagline">{p.label}</p>
-              <p className="lede">{p.description}</p>
-              <CheckList items={p.features} />
-              <div className="pd-finish">
-                <span>Available finish{p.colors.length > 1 ? "es" : ""}</span>
-                <Swatches colors={p.colors} />
-              </div>
-              <ContactButtons subject={`the ${p.name} ${noun}`} large />
-              <p className="pd-caption">Personal advice · Product details · A solution for your space</p>
-            </div>
-          </div>
+          <ProductOverview product={p} />
         </div>
       </section>
 

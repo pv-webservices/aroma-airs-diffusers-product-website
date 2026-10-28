@@ -7,3 +7,4 @@ out/
 asset-contact-sheet.jpg
 .playwright-cli/
 output/
+.claude/

@@ -42,7 +42,9 @@ export const products: Product[] = [
     "label": "A little space. A lasting impression.",
     "image": "s-compact",
     "gallery": [
-      "s-compact"
+      "s-compact",
+      "new-compact-black-wave-3",
+      "new-compact-black-wave-4"
     ],
     "description": "A compact cold-air fragrance diffuser in a discreet black finish. Place it on a tabletop or mount it on a wall to bring a consistent scent to reception desks, private offices and smaller interiors. Choose placement and settings with our team to suit your space.",
     "colors": [
@@ -54,13 +56,16 @@ export const products: Product[] = [
       "Ideal for smaller spaces"
     ],
     "specs": {
-      "Coverage area": "Up to 1,000 sq. ft.",
-      "Oil capacity": "150 ml",
-      "Power supply": "DC 12V / 5W",
-      "Noise level": "Under 35 dB",
-      "Material": "Premium ABS",
-      "Installation": "Wall mounted / tabletop",
-      "Dimensions": "170 × 85 × 220 mm"
+      "Coverage area": "1,000 sq. ft.",
+      "Oil capacity": "400 ml",
+      "Power supply": "DC 12V",
+      "Noise level": "Silent",
+      "Material": "Plastic",
+      "Installation type": "Wall-mounted",
+      "Dimensions": "115 × 70 × 215 mm",
+      "Weight": "1.5 kg",
+      "Warranty": "1 Year",
+      "Operation method": "Intelligent PCB + Bluetooth"
     },
     "applications": [
       "Homes & Apartments",
@@ -90,9 +95,93 @@ export const products: Product[] = [
       "Refillable oil bottle"
     ],
     "specs": {
-      "Colour": "White",
-      "Installation": "Wall mounted / tabletop",
-      "Technology": "Cold-air diffusion"
+      "Coverage area": "1,000 sq. ft.",
+      "Oil capacity": "400 ml",
+      "Power supply": "DC 12V",
+      "Noise level": "Silent",
+      "Material": "Plastic",
+      "Installation type": "Wall-mounted",
+      "Dimensions": "115 × 70 × 215 mm",
+      "Weight": "1.5 kg",
+      "Warranty": "1 Year",
+      "Operation method": "Intelligent PCB + Bluetooth"
+    },
+    "applications": [
+      "Homes & Apartments",
+      "Offices & Workspaces",
+      "Hotels & Resorts"
+    ]
+  },
+  {
+    "slug": "compact-black-wave",
+    "name": "Compact Black Wave",
+    "category": "compact",
+    "label": "Bold lines. Lasting fragrance.",
+    "image": "new-compact-black-wave-1",
+    "gallery": [
+      "new-compact-black-wave-1",
+      "new-compact-black-wave-2",
+      "new-compact-black-wave-3",
+      "new-compact-black-wave-4"
+    ],
+    "description": "A compact cold-air fragrance diffuser in a black finish with a distinctive wave-pattern front panel. Its wall-mounted format keeps surfaces clear, while the 400 ml refillable oil bottle sits behind a hinged cover for straightforward refilling. Intelligent PCB and Bluetooth control make it easy to set scenting around your space.",
+    "colors": [
+      "Black"
+    ],
+    "features": [
+      "Wave-pattern front panel",
+      "400 ml refillable oil bottle",
+      "Intelligent PCB + Bluetooth control"
+    ],
+    "specs": {
+      "Coverage area": "1,000 sq. ft.",
+      "Oil capacity": "400 ml",
+      "Power supply": "DC 12V",
+      "Noise level": "Silent",
+      "Material": "Plastic",
+      "Installation type": "Wall-mounted",
+      "Dimensions": "115 × 70 × 215 mm",
+      "Weight": "1.5 kg",
+      "Warranty": "1 Year",
+      "Operation method": "Intelligent PCB + Bluetooth"
+    },
+    "applications": [
+      "Homes & Apartments",
+      "Offices & Workspaces",
+      "Hotels & Resorts"
+    ]
+  },
+  {
+    "slug": "compact-white-wave",
+    "name": "Compact White Wave",
+    "category": "compact",
+    "label": "A soft wave of fragrance.",
+    "image": "new-compact-white-wave-1",
+    "gallery": [
+      "new-compact-white-wave-1",
+      "new-compact-white-wave-2",
+      "new-compact-white-wave-3"
+    ],
+    "description": "A compact cold-air fragrance diffuser in a white finish with a distinctive wave-pattern front panel. Its wall-mounted format keeps surfaces clear, while the 400 ml refillable oil bottle sits behind a hinged cover for straightforward refilling. Intelligent PCB and Bluetooth control make it easy to set scenting around your space.",
+    "colors": [
+      "White"
+    ],
+    "features": [
+      "Wave-pattern front panel",
+      "400 ml refillable oil bottle",
+      "Intelligent PCB + Bluetooth control"
+    ],
+    "specs": {
+      "Coverage area": "1,000 sq. ft.",
+      "Oil capacity": "400 ml",
+      "Power supply": "DC 12V",
+      "Noise level": "Silent",
+      "Material": "Plastic",
+      "Installation type": "Wall-mounted",
+      "Dimensions": "115 × 70 × 215 mm",
+      "Weight": "1.5 kg",
+      "Warranty": "1 Year",
+      "Operation method": "Intelligent PCB + Bluetooth"
     },
     "applications": [
       "Homes & Apartments",
@@ -123,9 +212,16 @@ export const products: Product[] = [
       "Accessible refillable oil bottle"
     ],
     "specs": {
-      "Colour": "Black",
-      "Installation": "Wall mounted",
-      "Technology": "Cold-air diffusion"
+      "Coverage area": "1,000 sq. ft.",
+      "Oil capacity": "400 ml",
+      "Power supply": "DC 12V",
+      "Noise level": "Silent",
+      "Material": "Plastic",
+      "Installation type": "Wall-mounted",
+      "Dimensions": "115 × 70 × 215 mm",
+      "Weight": "1.5 kg",
+      "Warranty": "1 Year",
+      "Operation method": "Intelligent PCB + Bluetooth"
     },
     "applications": [
       "Retail Stores",
@@ -159,9 +255,16 @@ export const products: Product[] = [
       "Accessible refillable oil bottle"
     ],
     "specs": {
-      "Colour": "White",
-      "Installation": "Wall mounted",
-      "Technology": "Cold-air diffusion"
+      "Coverage area": "1,000 sq. ft.",
+      "Oil capacity": "400 ml",
+      "Power supply": "DC 12V",
+      "Noise level": "Silent",
+      "Material": "Plastic",
+      "Installation type": "Wall-mounted",
+      "Dimensions": "115 × 70 × 215 mm",
+      "Weight": "1.5 kg",
+      "Warranty": "1 Year",
+      "Operation method": "Intelligent PCB + Bluetooth"
     },
     "applications": [
       "Offices & Workspaces",
@@ -183,7 +286,7 @@ export const products: Product[] = [
       "new-tower-series-black-3",
       "new-tower-series-black-4"
     ],
-    "description": "A floor-standing cold-air diffuser with a refined tower silhouette for lobbies, lounges and open interiors. The 800 ml oil bottle lifts out for convenient refilling, while touch and Bluetooth controls help you shape the scenting experience around your space. Choose Classic Black or Simple Silver to complement your interior.",
+    "description": "A floor-standing cold-air diffuser with a refined tower silhouette for lobbies, lounges and open interiors. The 800 ml oil bottle lifts out for convenient refilling, while Bluetooth control helps you shape the scenting experience around your space. Choose Classic Black or Simple Silver to complement your interior.",
     "colors": [
       "Classic Black",
       "Simple Silver"
@@ -191,13 +294,19 @@ export const products: Product[] = [
     "features": [
       "Floor-standing silhouette",
       "800 ml oil capacity",
-      "Touch / Bluetooth controls"
+      "Bluetooth control"
     ],
     "specs": {
+      "Coverage area": "4,000 sq. ft.",
       "Oil capacity": "800 ml",
-      "Colours": "Classic Black / Simple Silver",
-      "Installation": "Floor standing",
-      "Control methods": "Touch / Bluetooth"
+      "Power supply": "DC 12V",
+      "Noise level": "Silent",
+      "Material": "Metal alloy",
+      "Installation type": "Freestanding",
+      "Dimensions": "30 × 30 × 70 cm",
+      "Weight": "8 kg",
+      "Warranty": "1 Year",
+      "Operation method": "Bluetooth"
     },
     "applications": [
       "Hotels & Resorts",
@@ -245,13 +354,16 @@ export const products: Product[] = [
       "Cold-air nebulizing technology"
     ],
     "specs": {
-      "Coverage area": "Up to 3,000 sq. ft.",
+      "Coverage area": "4,000 sq. ft.",
       "Oil capacity": "800 ml",
-      "Power supply": "DC 12V / 5W",
-      "Noise level": "Under 35 dB",
-      "Material": "ABS",
-      "Installation": "Floor standing",
-      "Dimensions": "170 × 170 × 620 mm"
+      "Power supply": "DC 12V",
+      "Noise level": "Silent",
+      "Material": "Metal alloy",
+      "Installation type": "Freestanding",
+      "Dimensions": "30 × 30 × 70 cm",
+      "Weight": "8 kg",
+      "Warranty": "1 Year",
+      "Operation method": "Bluetooth"
     },
     "applications": [
       "Hotels & Resorts",
@@ -272,21 +384,26 @@ export const products: Product[] = [
       "new-hvac-power-2",
       "latest-catalogue-2"
     ],
-    "description": "A cold-air fragrance diffuser for larger interiors, designed for an HVAC scenting setup. Its 5,000 ml oil reservoir supports a practical refill routine for hotels, workplaces and shared commercial spaces. Our team can help match the installation and fragrance settings to your ventilation system, room layout and opening hours.",
+    "description": "A cold-air fragrance diffuser for larger interiors, designed for an HVAC scenting setup. Its 800 ml oil bottle supports a practical refill routine for hotels, workplaces and shared commercial spaces. Our team can help match the installation and fragrance settings to your ventilation system, room layout and opening hours.",
     "colors": [
       "Black"
     ],
     "features": [
       "HVAC scenting solution",
-      "5,000 ml oil capacity",
-      "Floor-standing / tabletop"
+      "800 ml oil capacity",
+      "Intelligent PCB + Bluetooth control"
     ],
     "specs": {
-      "Coverage area": "Up to 3,000 sq. ft.",
-      "Oil capacity": "5,000 ml",
-      "Power supply": "AC 110–240V / 25W",
-      "Material": "Stainless steel & ABS",
-      "Installation": "Floor standing / tabletop"
+      "Coverage area": "3,000 sq. ft.",
+      "Oil capacity": "800 ml",
+      "Power supply": "DC 12V",
+      "Noise level": "Silent",
+      "Material": "Plastic",
+      "Installation type": "Wall-mounted",
+      "Dimensions": "35 × 20 × 32 cm",
+      "Weight": "3.52 kg",
+      "Warranty": "1 Year",
+      "Operation method": "Intelligent PCB + Bluetooth"
     },
     "applications": [
       "Hotels & Resorts",
